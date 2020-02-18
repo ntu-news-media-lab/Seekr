@@ -2,12 +2,27 @@
 
 <html>
     <head>
-        <title>Extension Tutorial</title>
+		<title>Extension Tutorial</title>
+		<script type="text/javascript">
+		function fn1(){
+			var str =document.getElementById("text1").value;
+			alert("Value inside the text box is:" +str);
+			var bbcSrc = document.getElementById('bbcSrc');
+			bbcSrc.src = bbcSrc.src.replace(bbcSrc.src ,"https://www.bbc.co.uk/search?q="+str );
+			var bingSrc = document.getElementById('bingSrc');
+			bingSrc.src = bingSrc.src.replace(bingSrc.src, "https://www.bing.com/search?q="+str );
+		}
+		
+		</script>
     </head>
     <body>
+
+		<input id="text1" placeholder="Enter anything">
+		<br>
+		<button onclick="fn1()" id="btn1" >Search</button>
     	<p>This is the iFrame content</p>
-    	<iframe src="https://www.bbc.com/" width="640" height="480"></iframe>
-    	<iframe src="https://www.bing.com/" width="640" height="480"></iframe>
+    	<iframe id="bbcSrc" src="https://www.bbc.com/" width="640" height="480"></iframe>
+    	<iframe id="bingSrc" src="https://www.bing.com/" width="640" height="480"></iframe>
     	<iframe src="https://www.bing.com/?scope=video&nr=1" width="640" height="480"></iframe>
     	<iframe src="https://dollarsandsense.sg/" width="640" height="480"></iframe>
     	<iframe src="https://www.aol.com/" width="640" height="480"></iframe>
