@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "Blueprint",
+    "description": "The blueprint finder",
+    "version": "1",
+    "author": "Goh Yong Wei",
+    "browser_action": {
+      "default_icon": "./img/Garage.png",
+      "default_title": "Blueprint",
+      "default_popup": "onboarding.html"
+    },
+    "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",    
+
+    "permissions": ["storage"]
+  }
+  
