@@ -25,7 +25,7 @@ function nextSlide() {
 // }
 
 $("#next-circle").click(function() {
-    if (showing < 2) {
+    if (showing < 3) {
         showing += 1;
         //   if (showing >= 3) {
         //     goHome()
