@@ -1,4 +1,8 @@
 body {
+    margin: 0;
+    width: 370px;
+    height: 300px;
+    border: 10px solid springgreen;
     overflow: hidden;
     user-select: none;
     -moz-user-select: none;
@@ -25,6 +29,20 @@ body {
     width: 33.3333333333%;
     text-align: center;
   }  
+
+  .slide h1{
+    font-size: 30px;
+    font-family: "Bodoni MT", serif;
+    font-weight: bold;
+  }
+
+  .slide p {
+    line-height: 1.4em;
+    font-size: 13px;
+    width: 270px;
+    margin: 0 auto;
+    color: #848484;
+  }
 
   .footer {
     display: flex;
