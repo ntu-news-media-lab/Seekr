@@ -3,18 +3,18 @@ let slides = $(".dot");
 nextSlide();
 
 function nextSlide() {
-//   if (showing == 2) {
-//     $("#skip").hide();
-//     // $("#next-circle").text("Let's go");
-//   }  
-  let target = slides[showing];
-  $(target)
-  .addClass('fill')
-  .siblings("div")
-  .removeClass("fill");
-  
-  var margin = -100 * showing 
-  $('.slider').css("margin-left", margin + "%");
+    //   if (showing == 2) {
+    //     $("#skip").hide();
+    //     // $("#next-circle").text("Let's go");
+    //   }  
+    let target = slides[showing];
+    $(target)
+        .addClass('fill')
+        .siblings("div")
+        .removeClass("fill");
+
+    var margin = -100 * showing
+    $('.slider').css("margin-left", margin + "%");
 }
 
 
@@ -24,8 +24,8 @@ function nextSlide() {
 //   window.location.href = "home.html";
 // }
 
-$("#next-circle").click(function () {
-    if (showing < 1) {
+$("#next-circle").click(function() {
+    if (showing < 2) {
         showing += 1;
         //   if (showing >= 3) {
         //     goHome()
@@ -37,7 +37,7 @@ $("#next-circle").click(function () {
     }
 });
 
-$("#previous-circle").click(function () {
+$("#previous-circle").click(function() {
     if (showing > 0) {
         showing -= 1;
         //   if (showing >= 3) {
@@ -55,6 +55,6 @@ $("#previous-circle").click(function () {
 // });
 
 $('#close-icon').click(function() {
-  console.log('close');
-  window.close();
+    console.log('close');
+    window.close();
 })
