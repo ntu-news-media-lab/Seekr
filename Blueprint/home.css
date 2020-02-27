@@ -81,3 +81,8 @@
     line-height: 40px;
     width: 0px;
 }
+
+.defination{
+    margin-top: 50px;
+    overflow: auto;
+}
