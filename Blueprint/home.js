@@ -63,27 +63,29 @@ $('#close-icon').click(function() {
 
 
 $(".tab-container .button-container #investopedia-button").click(function(){
-    showPanel(0);
+    showPanel(0,"#f44336");
 });
 
 
 $(".tab-container .button-container #dictionary-button").click(function(){
-    showPanel(1);
+    showPanel(1, "#2196f3");
 });
 
 
 var tabButtons = document.querySelectorAll(".tab-container .button-container button");
 var tabPanels = document.querySelectorAll(".tab-container .tab-panel");
 
-function showPanel(panelIndex){
+function showPanel(panelIndex, colorCode){
     tabButtons.forEach(function(node){
-        node.style.backgroundColor="lightgreen";
+        node.style.backgroundColor="";
+        node.style.color="";
     });
     tabPanels.forEach(function(node){
         node.style.display="none";
     });
-    tabButtons[panelIndex].style.backgroundColor="#44D795"
-   tabPanels[panelIndex].style.display="block"
-   tabPanels[panelIndex].style.backgroundColor="#44D795"
+    tabButtons[panelIndex].style.backgroundColor=colorCode;
+    tabButtons[panelIndex].style.color="white";
+   tabPanels[panelIndex].style.display="block";
+   tabPanels[panelIndex].style.backgroundColor=colorCode;
 }
-showPanel(0);
+showPanel(0, "#f44336");
