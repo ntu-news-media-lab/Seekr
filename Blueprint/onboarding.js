@@ -18,11 +18,11 @@ function nextSlide() {
 }
 
 
-// function goHome() {
-//   console.log('Go home');
-//   chrome.browserAction.setPopup({ popup: "home.html" });
-//   window.location.href = "home.html";
-// }
+function goHome() {
+  console.log('Go home');
+  chrome.browserAction.setPopup({ popup: "home.html" });
+  window.location.href = "home.html";
+}
 
 $("#next-circle").click(function() {
     if (showing < 3) {
@@ -34,6 +34,8 @@ $("#next-circle").click(function() {
         nextSlide();
         //   }
 
+    }else{
+        goHome();
     }
 });
 
