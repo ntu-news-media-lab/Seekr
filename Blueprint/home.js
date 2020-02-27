@@ -61,3 +61,29 @@ $('#close-icon').click(function() {
     window.close();
 })
 
+
+$(".tab-container .button-container #investopedia-button").click(function(){
+    showPanel(0);
+});
+
+
+$(".tab-container .button-container #dictionary-button").click(function(){
+    showPanel(1);
+});
+
+
+var tabButtons = document.querySelectorAll(".tab-container .button-container button");
+var tabPanels = document.querySelectorAll(".tab-container .tab-panel");
+
+function showPanel(panelIndex){
+    tabButtons.forEach(function(node){
+        node.style.backgroundColor="lightgreen";
+    });
+    tabPanels.forEach(function(node){
+        node.style.display="none";
+    });
+    tabButtons[panelIndex].style.backgroundColor="#44D795"
+   tabPanels[panelIndex].style.display="block"
+   tabPanels[panelIndex].style.backgroundColor="#44D795"
+}
+showPanel(0);

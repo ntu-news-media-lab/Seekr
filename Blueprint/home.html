@@ -16,19 +16,53 @@
         <img src="./img/Garage.png" class="garage-logo" />
     </div>
 
-    <div class="section">
-        <a class="button" href="#" id="search">Search</a>
-        <a class="button" href="#" id="related-news">Related News</a>
-        <a class="button" href="#" id="checklist">Checklist</a>
-    </div>
+    <table class="section">
+        <tr>
+            <td><a class="button" href="#" id="search">Search</a></td>
+            <td><a class="button" href="#" id="related-news">Related News</a></td>
+            <td><a class="button" href="#" id="checklist">Checklist</a></td>
+        </tr>
+    </table>
     <div class="search-box">
+        <h2>WHAT ARE YOU LOOKING FOR?</h2>
         <input class="search-txt" type="text" name="" placeholder="Type to search">
         <a class="search-btn" href="#">
             <i class="fas fa-search"></i>
         </a>
     </div>
 
-    <div class="defination">
+    <div class="tab-container">
+        <div class="button-container">
+            <button id="investopedia-button">Investopedia</button>
+            <button id="dictionary-button">Dictionary</button>
+        </div>
+
+        <div class="tab-panel investopedia">
+            <div class="investopedia">
+                <div class="defination">
+                    <h2>Defination</h2>
+                    <p>
+                        explaination here
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="tab-panel dictionary">
+            <div class="dictionary">
+                <div class="defination">
+                    <h2>Defination</h2>
+                    <p>
+                        explaination here
+                    </p>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="defination">
         <div class="investopedia">
             <div class="defination">
                 <h2>Defination</h2>
@@ -46,7 +80,7 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
 
     <script src="json/investopedia.js"></script>
     <script src="json/dictionary.js"></script>
