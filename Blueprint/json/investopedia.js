@@ -11,7 +11,7 @@ const investopedia_json = [
     
 
     {
-      "keyword": "kim jung un", 
+      "keyword": "kim jong un", 
       "defination": "the supreme leader of korea investopedia stye"
     }, 
   

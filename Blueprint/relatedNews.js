@@ -1,21 +1,77 @@
-chrome.storage.local.get(['searchResult'], function(result) {
+chrome.storage.local.get(['searchResult'], function (result) {
     console.log('Value currently is ' + result.searchResult);
     searchResult = result.searchResult;
-    $(".search-box .search-txt").attr("placeholder", searchResult);
-  });
+    $(".search-box .search-txt").val(searchResult);
+});
 
 
-  $(".section #search").click(function(){
+$(".search-btn").click(function(){
+    var str = $(".search-txt").val();
+    chrome.storage.local.set({searchResult: str}, function() {
+        console.log('Value is set to ' + str);
+      });
+    loadStories(relatedNews_json, str);
+    // alert(str);
+});
+
+
+$(".section #search").click(function () {
     goHome();
 });
 
-  function goHome() {
+function goHome() {
     console.log('Go search page');
     chrome.browserAction.setPopup({ popup: "home.html" });
     window.location.href = "home.html";
 }
 
-// // $(function() {
+
+function haveArticles(json, searchResult) {
+    for (i = 0; i < json.length; i++) {
+        if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
+            return true;
+        }
+    }
+}
+
+
+function loadStories(json, searchResult) {
+    if (haveArticles(json, searchResult) == true) {
+        let contentLeft = true;
+        $(".content .left").empty();
+        $(".content .right").empty();
+        for (i = 0; i < json.length; i++) {
+            if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
+                var jsonObject = json[i];
+                const html = `
+            <div class="tile">
+                <img src="${jsonObject.img_src}">
+                <a href="${jsonObject.url}" class="headline-small" target="_blank">
+                    ${jsonObject.headline}
+                </a>
+                <a class="add small margin-top" target="_blank">
+                    <i class="fas fa-plus-circle"></i>
+                </a>
+            </div>
+          `;
+                //check if its even or odd
+                if (contentLeft == true) {
+                    $(".content .left").append(html);
+                    contentLeft = false;
+                } else {
+                    $(".content .right").append(html);
+                    contentLeft = true;
+                }
+            }
+
+        }
+    }
+
+
+}
+
+
+
 //   console.log("stories.js");
 
 //   $('#mood-title').text(moodDict[mood].title);

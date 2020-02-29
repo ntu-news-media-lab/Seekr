@@ -11,7 +11,7 @@ const dictionary_json = [
       
 
       {
-        "keyword": "kim jung un", 
+        "keyword": "kim jong un", 
         "defination": "the supreme leader of korea"
       }, 
     
