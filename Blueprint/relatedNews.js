@@ -4,7 +4,7 @@ chrome.storage.local.get(['searchResult'], function (result) {
     $(".search-box .search-txt").val(searchResult);
     loadStories(relatedNews_json, searchResult);
 });
-$('.tile .add').click('click', function () {
+$('.content  .left .tile').click( function () {
     //for reference
     // urls.push({url: url, title: title, image: image, done: false});
     // chrome.storage.local.set({urls: urls});
@@ -60,6 +60,8 @@ function haveArticles(json, searchResult) {
 }
 
 function loadStories(json, searchResult) {
+    var leftReadingList = document.querySelector('.content .left');
+    var rightReadingList = document.querySelector('.content .right');
     if (haveArticles(json, searchResult) == true) {
         let contentLeft = true;
         $(".content .left").empty();
@@ -67,27 +69,53 @@ function loadStories(json, searchResult) {
         for (i = 0; i < json.length; i++) {
             if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
                 var jsonObject = json[i];
+               
+               //create image tag
+                var image = document.createElement('img');
+                image.src=jsonObject.img_src;
+                
+                //create the headline element
+                var headline = document.createElement('a');
+                headline.href = jsonObject.url;
+                headline.className = "headline-small";
+                headline.target = "_blank";
+                headline.innerHTML=jsonObject.headline;
 
-                // var checklistbutton = $('<button class="add small margin-top" target="_blank">   <i class="fas fa-plus-circle"></i></button>')
-                const html = `
-            <div class="tile">
-                <img src="${jsonObject.img_src}">
-                <a href="${jsonObject.url}" class="headline-small" target="_blank">
-                    ${jsonObject.headline}
-                </a>
-                <button class="add small margin-top" target="_blank">
-                    <i class="fas fa-plus-circle"></i>
-                </button>
-            </div>
-          `;
+                //create the add button
+                var checklistButton = document.createElement('button');
+                checklistButton.className = "add small margin-top"
+                checklistButton.target = "_blank";
+                checklistButton.innerHTML="+";
+
+               
+
                 //check if its even or odd
                 if (contentLeft == true) {
-                    $(".content .left").append(html);
+                    leftReadingList.appendChild(image);
+                    leftReadingList.appendChild(headline);
+                    leftReadingList.appendChild(checklistButton);
+                    // $(".content .left").append(html);
                     contentLeft = false;
                 } else {
-                    $(".content .right").append(html);
+
+                    rightReadingList.appendChild(image);
+                    rightReadingList.appendChild(headline);
+                    rightReadingList.appendChild(checklistButton);
+                    // $(".content .right").append(html);
                     contentLeft = true;
                 }
+
+            //     const html = `
+            //     <div class="tile">
+            //         <img src="${jsonObject.img_src}">
+            //         <a href="${jsonObject.url}" class="headline-small" target="_blank">
+            //             ${jsonObject.headline}
+            //         </a>
+            //         <button class="add small margin-top" target="_blank">
+            //             <i class="fas fa-plus-circle"></i>
+            //         </button>
+            //     </div>
+            //   `;
             }
 
         }
