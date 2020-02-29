@@ -4,7 +4,7 @@ chrome.storage.local.get(['searchResult'], function (result) {
     $(".search-box .search-txt").val(searchResult);
     loadStories(relatedNews_json, searchResult);
 });
-$('.content  .left .tile').click( function () {
+$('.search-box .content .column .tile .add').click( function () {
     //for reference
     // urls.push({url: url, title: title, image: image, done: false});
     // chrome.storage.local.set({urls: urls});
@@ -16,6 +16,10 @@ $('.content  .left .tile').click( function () {
         console.log('Value is set to ' + checklists);
     });
 
+});
+
+$('.content .column').on('click', '.tile .add', function(){
+    alert('Button clicked!');
 });
 
 
@@ -62,6 +66,7 @@ function haveArticles(json, searchResult) {
 function loadStories(json, searchResult) {
     var leftReadingList = document.querySelector('.content .left');
     var rightReadingList = document.querySelector('.content .right');
+    var buttonid=-1;
     if (haveArticles(json, searchResult) == true) {
         let contentLeft = true;
         $(".content .left").empty();
@@ -69,7 +74,13 @@ function loadStories(json, searchResult) {
         for (i = 0; i < json.length; i++) {
             if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
                 var jsonObject = json[i];
-               
+                              
+                
+                
+                //create tile tag
+                var tile = document.createElement('div');
+                tile.className = "tile";
+
                //create image tag
                 var image = document.createElement('img');
                 image.src=jsonObject.img_src;
@@ -86,21 +97,33 @@ function loadStories(json, searchResult) {
                 checklistButton.className = "add small margin-top"
                 checklistButton.target = "_blank";
                 checklistButton.innerHTML="+";
+                // checklistButton.id =buttonid+1;
+                // buttonid = buttonid+1;
+                // checklistButton.addEventListener('click', function() {
+                //     var articleId = checklistButton.getAttribute("id");
+                //     var title = jsonObject.headline;
+                //     var url = jsonObject.url;
+                //     var checklists = { title: title, url: url, done: false }
+                //     chrome.storage.local.set({ checklists: checklists }, function () {
+                //         console.log('Value is set to ' + checklists);
+                //     });
 
+
+                //   });
+
+                //append all to the div class
+                tile.appendChild(image);
+                tile.appendChild(headline);
+                tile.appendChild(checklistButton);
                
 
                 //check if its even or odd
                 if (contentLeft == true) {
-                    leftReadingList.appendChild(image);
-                    leftReadingList.appendChild(headline);
-                    leftReadingList.appendChild(checklistButton);
+                    leftReadingList.appendChild(tile);
                     // $(".content .left").append(html);
                     contentLeft = false;
                 } else {
-
-                    rightReadingList.appendChild(image);
-                    rightReadingList.appendChild(headline);
-                    rightReadingList.appendChild(checklistButton);
+                    rightReadingList.appendChild(tile);
                     // $(".content .right").append(html);
                     contentLeft = true;
                 }
