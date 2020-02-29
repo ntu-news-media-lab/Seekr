@@ -4,6 +4,17 @@ chrome.storage.local.get(['searchResult'], function(result) {
     $(".search-box .search-txt").attr("placeholder", searchResult);
   });
 
+
+  $(".section #search").click(function(){
+    goHome();
+});
+
+  function goHome() {
+    console.log('Go search page');
+    chrome.browserAction.setPopup({ popup: "home.html" });
+    window.location.href = "home.html";
+}
+
 // // $(function() {
 //   console.log("stories.js");
 
