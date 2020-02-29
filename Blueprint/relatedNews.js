@@ -4,13 +4,26 @@ chrome.storage.local.get(['searchResult'], function (result) {
     $(".search-box .search-txt").val(searchResult);
     loadStories(relatedNews_json, searchResult);
 });
+$('.tile .add').click('click', function () {
+    //for reference
+    // urls.push({url: url, title: title, image: image, done: false});
+    // chrome.storage.local.set({urls: urls});
+
+    var title = $(".tile .headline-small").get();
+    var url = $(".tile .headline-small").attr("href");
+    var checklists = { title: title, url: url, done: false }
+    chrome.storage.local.set({ checklists: checklists }, function () {
+        console.log('Value is set to ' + checklists);
+    });
+
+});
 
 
-$(".search-btn").click(function(){
+$(".search-btn").click(function () {
     var str = $(".search-txt").val();
-    chrome.storage.local.set({searchResult: str}, function() {
+    chrome.storage.local.set({ searchResult: str }, function () {
         console.log('Value is set to ' + str);
-      });
+    });
     loadStories(relatedNews_json, str);
     // alert(str);
 });
@@ -20,11 +33,22 @@ $(".section #search").click(function () {
     goHome();
 });
 
+$(".section #checklist").click(function () {
+    goChecklist();
+});
+
 function goHome() {
     console.log('Go search page');
     chrome.browserAction.setPopup({ popup: "home.html" });
     window.location.href = "home.html";
 }
+
+function goChecklist() {
+    console.log('Go checklist page');
+    chrome.browserAction.setPopup({ popup: "checklist.html" });
+    window.location.href = "checklist.html";
+}
+
 
 
 function haveArticles(json, searchResult) {
@@ -35,7 +59,6 @@ function haveArticles(json, searchResult) {
     }
 }
 
-
 function loadStories(json, searchResult) {
     if (haveArticles(json, searchResult) == true) {
         let contentLeft = true;
@@ -44,15 +67,17 @@ function loadStories(json, searchResult) {
         for (i = 0; i < json.length; i++) {
             if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
                 var jsonObject = json[i];
+
+                // var checklistbutton = $('<button class="add small margin-top" target="_blank">   <i class="fas fa-plus-circle"></i></button>')
                 const html = `
             <div class="tile">
                 <img src="${jsonObject.img_src}">
                 <a href="${jsonObject.url}" class="headline-small" target="_blank">
                     ${jsonObject.headline}
                 </a>
-                <a class="add small margin-top" target="_blank">
+                <button class="add small margin-top" target="_blank">
                     <i class="fas fa-plus-circle"></i>
-                </a>
+                </button>
             </div>
           `;
                 //check if its even or odd
@@ -70,6 +95,25 @@ function loadStories(json, searchResult) {
 
 
 }
+
+
+
+
+
+// $(".content").find(".tile .add").click(function () {
+//     //for reference
+//     // urls.push({url: url, title: title, image: image, done: false});
+//     // chrome.storage.local.set({urls: urls});
+
+//     var title = $(".tile .headline-small").get();
+//     var url = $(".tile .headline-small").attr("href");
+//     var checklists = {title: title, url: url, done: false}
+//     chrome.storage.local.set({checklists: checklists}, function(){
+//         console.log('Value is set to ' + checklists);
+//     });
+
+// });
+
 
 
 

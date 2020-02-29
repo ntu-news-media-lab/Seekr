@@ -14,6 +14,11 @@ $(".section #related-news").click(function(){
 });
 
 
+$(".section #checklist").click(function () {
+    goChecklist();
+});
+
+
 function loadInvestopedia(json, searchResult){
     let defination="cannot be found";
     let explaination="cannot be found";
@@ -104,5 +109,11 @@ function goRelatedNews() {
     console.log('Go related news');
     chrome.browserAction.setPopup({ popup: "relatedNews.html" });
     window.location.href = "relatedNews.html";
+}
+
+function goChecklist() {
+    console.log('Go checklist page');
+    chrome.browserAction.setPopup({ popup: "checklist.html" });
+    window.location.href = "checklist.html";
 }
 
