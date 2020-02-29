@@ -2,6 +2,7 @@ chrome.storage.local.get(['searchResult'], function (result) {
     console.log('Value currently is ' + result.searchResult);
     searchResult = result.searchResult;
     $(".search-box .search-txt").val(searchResult);
+    loadStories(relatedNews_json, searchResult);
 });
 
 
@@ -69,6 +70,8 @@ function loadStories(json, searchResult) {
 
 
 }
+
+
 
 
 
