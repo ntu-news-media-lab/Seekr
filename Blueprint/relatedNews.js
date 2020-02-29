@@ -4,23 +4,24 @@ chrome.storage.local.get(['searchResult'], function (result) {
     $(".search-box .search-txt").val(searchResult);
     loadStories(relatedNews_json, searchResult);
 });
-$('.search-box .content .column .tile .add').click( function () {
+$('.search-box .content .column').on('click','.tile .add', function (event) {
     //for reference
     // urls.push({url: url, title: title, image: image, done: false});
     // chrome.storage.local.set({urls: urls});
+    var articleId = event.target.id;
 
-    var title = $(".tile .headline-small").get();
-    var url = $(".tile .headline-small").attr("href");
+    var title = $(".column ." +String(articleId)+" .headline-small").html();
+    var url = $(".column ." +String(articleId)+" .headline-small").attr("href");
     var checklists = { title: title, url: url, done: false }
     chrome.storage.local.set({ checklists: checklists }, function () {
-        console.log('Value is set to ' + checklists);
+        console.log('Value is set to ' + checklists.title);
     });
 
 });
 
-$('.content .column').on('click', '.tile .add', function(){
-    alert('Button clicked!');
-});
+// $('.content .column').on('click', '.tile .add', function(){
+//     alert('Button clicked!');
+// });
 
 
 $(".search-btn").click(function () {
@@ -66,11 +67,11 @@ function haveArticles(json, searchResult) {
 function loadStories(json, searchResult) {
     var leftReadingList = document.querySelector('.content .left');
     var rightReadingList = document.querySelector('.content .right');
-    var buttonid=-1;
     if (haveArticles(json, searchResult) == true) {
         let contentLeft = true;
         $(".content .left").empty();
         $(".content .right").empty();
+        var articleId = 0;
         for (i = 0; i < json.length; i++) {
             if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
                 var jsonObject = json[i];
@@ -79,7 +80,7 @@ function loadStories(json, searchResult) {
                 
                 //create tile tag
                 var tile = document.createElement('div');
-                tile.className = "tile";
+                tile.className = "tile "+String(articleId);
 
                //create image tag
                 var image = document.createElement('img');
@@ -94,11 +95,10 @@ function loadStories(json, searchResult) {
 
                 //create the add button
                 var checklistButton = document.createElement('button');
-                checklistButton.className = "add small margin-top"
+                checklistButton.className = "add small margin-top "+String(articleId);
                 checklistButton.target = "_blank";
                 checklistButton.innerHTML="+";
-                // checklistButton.id =buttonid+1;
-                // buttonid = buttonid+1;
+                checklistButton.id=String(articleId);
                 // checklistButton.addEventListener('click', function() {
                 //     var articleId = checklistButton.getAttribute("id");
                 //     var title = jsonObject.headline;
@@ -115,6 +115,7 @@ function loadStories(json, searchResult) {
                 tile.appendChild(image);
                 tile.appendChild(headline);
                 tile.appendChild(checklistButton);
+                articleId= articleId +1;
                
 
                 //check if its even or odd
