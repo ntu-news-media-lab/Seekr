@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Related News</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/d60dc9f679.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="common.css" />
+    <link rel="stylesheet" type="text/css" href="relatedNews.css" />
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <img id="close-icon" src="./img/delete.png">
+        <img src="./img/Garage.png" class="garage-logo" />
+    </div>
+
+    <table class="section">
+        <tr>
+            <td><a class="button" href="#" id="search">Search</a></td>
+            <td><a class="button" href="#" id="related-news">Related News</a></td>
+            <td><a class="button" href="#" id="checklist">Checklist</a></td>
+        </tr>
+    </table>
+    <div class="search-box">
+        <input class="search-txt" type="text" name="" placeholder="Type to search">
+        <a class="search-btn" href="#">
+            <i class="fas fa-search"></i>
+        </a>
+
+        <div class="content">
+            <div class="row">
+                <div class="column left small">
+                    <div class="tile">
+                        <img src="${stories[1].img_src || placeholder}">
+                        <a href="${stories[1].url}" class="headline-small" target="_blank">
+                            ${stories[1].headline}
+                        </a>
+                        <div class="lead-small">
+                            ${stories[1].standfirst || stories[1].lead}
+                        </div>
+                        <a href="${stories[1].url}" class="read small margin-top" target="_blank">READ</a>
+                    </div>
+                    <div class="tile">
+                        <img src="${stories[3].img_src || placeholder}">
+                        <a href="${stories[3].url}" class="headline-small" target="_blank">
+                            ${stories[3].headline}
+                        </a>
+                        <div class="lead-small">
+                            ${stories[3].standfirst || stories[3].lead}
+                        </div>
+                        <a href="${stories[3].url}" class="read small margin-top" target="_blank">READ</a>
+                    </div>
+                </div>
+                <div class="verticle-line"></div>
+                <div class="column right small">
+                    <div class="tile">
+                        <img src="${stories[2].img_src || placeholder}">
+                        <a href="${stories[2].url}" class="headline-small" target="_blank">
+                            ${stories[2].headline}
+                        </a>
+                        <div class="lead-small">
+                            ${stories[2].standfirst || stories[2].lead}
+                        </div>
+                        <a href="${stories[2].url}" class="read small margin-top" target="_blank">READ</a>
+                    </div>
+                    <div class="tile">
+                        <img src="${stories[4].img_src || placeholder}">
+                        <a href="${stories[4].url}" class="headline-small" target="_blank">
+                            ${stories[4].headline}
+                        </a>
+                        <div class="lead-small">
+                            ${stories[4].standfirst || stories[4].lead}
+                        </div>
+                        <a href="${stories[4].url}" class="read small margin-top" target="_blank">READ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script src="json/investopedia.js"></script>
+    <script src="json/dictionary.js"></script> -->
+    <script src="relatedNews.js"></script>
+</body>
+
+</html>

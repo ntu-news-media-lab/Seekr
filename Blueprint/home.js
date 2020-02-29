@@ -1,9 +1,18 @@
 $(".search-btn").click(function(){
     var str = $(".search-txt").val();
+    chrome.storage.local.set({searchResult: str}, function() {
+        console.log('Value is set to ' + str);
+      });
     loadInvestopedia(investopedia_json, str);
     loadDictionary(dictionary_json, str);
     // alert(str);
 });
+
+
+$(".section #related-news").click(function(){
+    goRelatedNews();
+});
+
 
 function loadInvestopedia(json, searchResult){
     let defination="cannot be found";
@@ -88,4 +97,12 @@ function showPanel(panelIndex, colorCode){
    tabPanels[panelIndex].style.display="block";
    tabPanels[panelIndex].style.backgroundColor=colorCode;
 }
+
 showPanel(0, "#f44336");
+
+function goRelatedNews() {
+    console.log('Go related news');
+    chrome.browserAction.setPopup({ popup: "relatedNews.html" });
+    window.location.href = "relatedNews.html";
+}
+
