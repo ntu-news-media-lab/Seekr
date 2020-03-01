@@ -64,7 +64,33 @@ const relatedNews_json = [
       "published_date": "18 May 2019", 
       "keyword": "kim jong un"
       
-    }
-
+    },
+    {
+      "img_src": "https://www.businesstimes.com.sg/sites/default/files/styles/720x479/public/image/2020/01/27/rk_KimKyongHui_270120.jpg?itok=-ksAlR53", 
+      "url": "https://www.businesstimes.com.sg/government-economy/influential-aunt-of-north-koreas-kim-jong-un-makes-first-public-appearance-in-6",
+      "headline": "Influential aunt of North Korea's Kim Jong Un makes first public appearance in 6 years", 
+      "description": "The influential aunt of North Korean leader Kim Jong Un made her first public appearance in six years, state media reported on Sunday, years after her husband was executed in a purge.",
+      "published_date": "27 jan 2020", 
+      "keyword": "kim jong un"
+      
+    },
+    {
+      "img_src": "https://www.businesstimes.com.sg/sites/default/files/styles/680x453/public/image/2019/12/23/WH_Kim%20Jong%20Un%20_221288.jpg?itok=Fd8pRhTZ", 
+      "url": "https://www.businesstimes.com.sg/government-economy/kim-jong-un-discusses-bolstering-n-koreas-military-as-deadline-approaches",
+      "headline": "Kim Jong Un discusses bolstering N Korea's military as deadline approaches", 
+      "description": "North Korean leader Kim Jong Un discussed strengthening his country's military capability with top military officials, state media reported Sunday, with Pyongyang's end-of-year deadline for the US to offer concessions approaching.",
+      "published_date": "23 dec 2019", 
+      "keyword": "kim jong un"
+      
+    },
     
+    {
+      "img_src": "https://www.businesstimes.com.sg/sites/default/files/styles/680x453/public/image/2019/09/16/AK_kjudt_1609.jpg?itok=WUcVmG3_", 
+      "url": "https://www.businesstimes.com.sg/government-economy/kim-jong-un-invited-trump-to-visit-pyongyang-south-korea-media-reports",
+      "headline": "Kim Jong Un invited Trump to visit Pyongyang: South Korea media reports", 
+      "description": "[SEOUL] North Korean leader Kim Jong Un invited US President Donald Trump to visit Pyongyang, Joongang Ilbo reported, citing multiple people familiar with the matter.",
+      "published_date": "16 sep 2019", 
+      "keyword": "kim jong un"
+      
+    }
   ];
