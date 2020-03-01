@@ -58,7 +58,7 @@ const relatedNews_json = [
     },
     {
       "img_src": "https://www.straitstimes.com/sites/default/files/styles/article_pictrure_780x520_/public/articles/2020/02/16/2020-02-15t220503z_1691768414_rc2a1f9vt2vb_rtrmadp_3_northkorea-anniversary.jpg?itok=_CZwiZCk&timestamp=1581805086", 
-      "url": "straitstimes.com/asia/east-asia/north-koreas-kim-jong-un-visits-his-fathers-mausoleum-pays-tribute-kcna",
+      "url": "https://www.straitstimes.com/asia/east-asia/north-koreas-kim-jong-un-visits-his-fathers-mausoleum-pays-tribute-kcna",
       "headline": "North Korea’s Kim Jong Un makes first public appearance in 22 days amid coronavirus outbreak", 
       "description": "North Korea's Kim Jong Un guides military drills, warns of 'serious consequences' if virus breaks out: KCNA",
       "published_date": "18 May 2019", 
