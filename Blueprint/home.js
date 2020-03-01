@@ -24,7 +24,7 @@ function loadInvestopedia(json, searchResult){
     let explaination="cannot be found";
     var i;
     for(i=0; i<json.length; i++){
-        if(searchResult == json[i].keyword){
+        if(searchResult.toLowerCase() == json[i].keyword.toLowerCase()){
             var jsonObject = json[i]
             defination = searchResult
             explaination=jsonObject.defination

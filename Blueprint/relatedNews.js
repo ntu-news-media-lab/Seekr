@@ -63,6 +63,12 @@ $(".section #checklist").click(function () {
     goChecklist();
 });
 
+$('#close-icon').click(function() {
+    console.log('close');
+    window.close();
+})
+
+
 function goHome() {
     console.log('Go search page');
     chrome.browserAction.setPopup({ popup: "home.html" });

@@ -12,6 +12,12 @@ $(".section #related-news").click(function () {
     goRelatedNews();
 });
 
+$('#close-icon').click(function() {
+    console.log('close');
+    window.close();
+})
+
+
 function goRelatedNews() {
     console.log('Go related news');
     chrome.browserAction.setPopup({ popup: "relatedNews.html" });
