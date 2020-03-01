@@ -12,12 +12,33 @@ $('.search-box .content .column').on('click','.tile .add', function (event) {
 
     var title = $(".column ." +String(articleId)+" .headline-small").html();
     var url = $(".column ." +String(articleId)+" .headline-small").attr("href");
-    var checklists = { title: title, url: url, done: false }
-    chrome.storage.local.set({ checklists: checklists }, function () {
-        console.log('Value is set to ' + checklists.title);
+    chrome.storage.local.get({urls: []}, function(result) {
+        var urls = result.urls;
+        if (!savedAlready(urls, title)) {
+          urls.push({title: title, url: url, done: false});
+          chrome.storage.local.set({urls: urls});
+          chrome.extension.sendRequest({});
+          console.log('Saving page ' + title);
+        } else {
+          console.log('You already saved this');
+        }
+      });
     });
 
-});
+
+
+    function savedAlready(urls, title) {
+        var filteredUrls = urls.filter(function (el) {
+          return el.title === title;
+        });
+        return filteredUrls.length > 0;
+      }
+// function savedAlready(checklists, title) {
+//     var filteredChecklists = checklists.filter(function (el) {
+//       return el.title === url;
+//     });
+//     return filteredChecklists.length > 0;
+//   }
 
 // $('.content .column').on('click', '.tile .add', function(){
 //     alert('Button clicked!');
