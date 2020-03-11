@@ -1,0 +1,9 @@
+{
+  "name": "com.google.chrome.example.webCrawler",
+  "description": "WebCrawler api host",
+  "path": "webCrawler.bat",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://hmdbmlkpepdgnbohmnbbpfbkaaliobkg/"
+  ]
+}

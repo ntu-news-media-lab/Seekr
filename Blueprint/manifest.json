@@ -11,6 +11,7 @@
     },
     "content_security_policy": "script-src 'self' https://ajax.googleapis.com https://kit.fontawesome.com; object-src 'self'",    
 
-    "permissions": ["storage"]
+    "permissions": ["storage",
+      "nativeMessaging"]
   }
   
