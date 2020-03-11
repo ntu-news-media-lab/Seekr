@@ -3,4 +3,4 @@
 :: Use of this source code is governed by a BSD-style license that can be
 :: found in the LICENSE file.
 
-"C:\Python27\python.exe" "%~dp0/native-messaging-example-host.py" %*
+python "%~dp0/simpleGui" %*
