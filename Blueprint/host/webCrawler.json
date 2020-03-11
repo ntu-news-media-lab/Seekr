@@ -1,5 +1,5 @@
 {
-  "name": "com.google.chrome.example.webCrawler",
+  "name": "com.google.chrome.example.webcrawler",
   "description": "WebCrawler api host",
   "path": "webCrawler.bat",
   "type": "stdio",

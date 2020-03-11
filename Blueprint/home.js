@@ -1,15 +1,42 @@
-$(".search-btn").click(function(){
+var port = null;
+
+connect();
+
+$(".search-btn").click(function () {
     var str = $(".search-txt").val();
-    chrome.storage.local.set({searchResult: str}, function() {
+    chrome.storage.local.set({ searchResult: str }, function () {
         console.log('Value is set to ' + str);
-      });
+    });
+    sendNativeMessage();
     loadInvestopedia(investopedia_json, str);
     loadDictionary(dictionary_json, str);
     // alert(str);
 });
 
+function connect() {
+    var hostName = "com.google.chrome.example.webcrawler";
+    // appendMessage("Connecting to native messaging host <b>" + hostName + "</b>")
+    port = chrome.runtime.connectNative(hostName);
+    // port.onMessage.addListener(onNativeMessage);
+    port.onDisconnect.addListener(onDisconnected);
+}
 
-$(".section #related-news").click(function(){
+function sendNativeMessage() {
+    port.postMessage({ "text": "Hello, my_application" });
+    alert("sending message");
+}
+
+function onDisconnected() {
+    // appendMessage("Failed to connect: " + chrome.runtime.lastError.message);
+    alert("failed to connect")
+    port = null;
+}
+
+
+
+
+
+$(".section #related-news").click(function () {
     goRelatedNews();
 });
 
@@ -19,16 +46,16 @@ $(".section #checklist").click(function () {
 });
 
 
-function loadInvestopedia(json, searchResult){
-    let defination="cannot be found";
-    let explaination="cannot be found";
+function loadInvestopedia(json, searchResult) {
+    let defination = "cannot be found";
+    let explaination = "cannot be found";
     var i;
-    for(i=0; i<json.length; i++){
-        if(searchResult.toLowerCase() == json[i].keyword.toLowerCase()){
+    for (i = 0; i < json.length; i++) {
+        if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
             var jsonObject = json[i]
             defination = searchResult
-            explaination=jsonObject.defination
-            
+            explaination = jsonObject.defination
+
         }
     }
     const html = `
@@ -40,19 +67,19 @@ function loadInvestopedia(json, searchResult){
     
     </div>
   `;
-  $(".investopedia .defination").replaceWith(html);
+    $(".investopedia .defination").replaceWith(html);
 
 }
 
-function loadDictionary(json, searchResult){
-    let defination="cannot be found";
-    let explaination="cannot be found";
+function loadDictionary(json, searchResult) {
+    let defination = "cannot be found";
+    let explaination = "cannot be found";
     var i;
-    for(i=0; i<json.length; i++){
-        if(searchResult.toLowerCase() == json[i].keyword.toLowerCase()){
+    for (i = 0; i < json.length; i++) {
+        if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
             var jsonObject = json[i]
             defination = searchResult
-            explaination=jsonObject.defination
+            explaination = jsonObject.defination
         }
 
     }
@@ -65,23 +92,23 @@ function loadDictionary(json, searchResult){
     
     </div>
   `;
-  $(".dictionary .defination").replaceWith(html);
+    $(".dictionary .defination").replaceWith(html);
 
 }
 
 
-$('#close-icon').click(function() {
+$('#close-icon').click(function () {
     console.log('close');
     window.close();
 })
 
 
-$(".tab-container .button-container #investopedia-button").click(function(){
-    showPanel(0,"#f44336");
+$(".tab-container .button-container #investopedia-button").click(function () {
+    showPanel(0, "#f44336");
 });
 
 
-$(".tab-container .button-container #dictionary-button").click(function(){
+$(".tab-container .button-container #dictionary-button").click(function () {
     showPanel(1, "#2196f3");
 });
 
@@ -89,18 +116,18 @@ $(".tab-container .button-container #dictionary-button").click(function(){
 var tabButtons = document.querySelectorAll(".tab-container .button-container button");
 var tabPanels = document.querySelectorAll(".tab-container .tab-panel");
 
-function showPanel(panelIndex, colorCode){
-    tabButtons.forEach(function(node){
-        node.style.backgroundColor="";
-        node.style.color="";
+function showPanel(panelIndex, colorCode) {
+    tabButtons.forEach(function (node) {
+        node.style.backgroundColor = "";
+        node.style.color = "";
     });
-    tabPanels.forEach(function(node){
-        node.style.display="none";
+    tabPanels.forEach(function (node) {
+        node.style.display = "none";
     });
-    tabButtons[panelIndex].style.backgroundColor=colorCode;
-    tabButtons[panelIndex].style.color="white";
-   tabPanels[panelIndex].style.display="block";
-   tabPanels[panelIndex].style.backgroundColor=colorCode;
+    tabButtons[panelIndex].style.backgroundColor = colorCode;
+    tabButtons[panelIndex].style.color = "white";
+    tabPanels[panelIndex].style.display = "block";
+    tabPanels[panelIndex].style.backgroundColor = colorCode;
 }
 
 showPanel(0, "#f44336");
