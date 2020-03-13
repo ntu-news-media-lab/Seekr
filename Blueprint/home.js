@@ -22,7 +22,8 @@ function connect() {
 }
 
 function sendNativeMessage() {
-    port.postMessage({ "text": "Hello, my_application" });
+    message = $(".search-txt").val()
+    port.postMessage(message);
     alert("sending message");
 }
 
