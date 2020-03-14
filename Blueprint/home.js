@@ -8,8 +8,8 @@ $(".search-btn").click(function () {
         console.log('Value is set to ' + str);
     });
     sendNativeMessage();
-    loadInvestopedia(investopedia_json, str);
-    loadDictionary(dictionary_json, str);
+    // loadInvestopedia(investopedia_json, str);
+    // loadDictionary(dictionary_json, str);
     // alert(str);
 });
 
@@ -17,7 +17,7 @@ function connect() {
     var hostName = "com.google.chrome.example.webcrawler";
     // appendMessage("Connecting to native messaging host <b>" + hostName + "</b>")
     port = chrome.runtime.connectNative(hostName);
-    // port.onMessage.addListener(onNativeMessage);
+    port.onMessage.addListener(onNativeMessage);
     port.onDisconnect.addListener(onDisconnected);
 }
 
@@ -32,6 +32,11 @@ function onDisconnected() {
     alert("failed to connect")
     port = null;
 }
+
+function onNativeMessage(message) {
+    // updateInvestopedia();
+    console.log(JSON.stringify(message));
+  }
 
 
 
