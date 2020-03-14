@@ -9,7 +9,7 @@ $(".search-btn").click(function () {
     });
     sendNativeMessage();
     // loadInvestopedia(investopedia_json, str);
-    // loadDictionary(dictionary_json, str);
+    loadDictionary(dictionary_json, str);
     // alert(str);
 });
 
@@ -34,7 +34,7 @@ function onDisconnected() {
 }
 
 function onNativeMessage(message) {
-    // updateInvestopedia();
+    // updateInvestopedia(JSON.stringify(message));
     console.log(JSON.stringify(message));
   }
 
@@ -52,18 +52,9 @@ $(".section #checklist").click(function () {
 });
 
 
-function loadInvestopedia(json, searchResult) {
-    let defination = "cannot be found";
-    let explaination = "cannot be found";
-    var i;
-    for (i = 0; i < json.length; i++) {
-        if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
-            var jsonObject = json[i]
-            defination = searchResult
-            explaination = jsonObject.defination
-
-        }
-    }
+function updateInvestopedia(message){
+    let defination = $(".search-txt").val();;
+    let explaination = message;
     const html = `
     <div class="defination">
     <h2>${defination}</h2>
@@ -73,9 +64,34 @@ function loadInvestopedia(json, searchResult) {
     
     </div>
   `;
-    $(".investopedia .defination").replaceWith(html);
-
+  $(".investopedia .defination").replaceWith(html);
 }
+
+
+// function loadInvestopedia(json, searchResult) {
+//     let defination = "cannot be found";
+//     let explaination = "cannot be found";
+//     var i;
+//     for (i = 0; i < json.length; i++) {
+//         if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
+//             var jsonObject = json[i]
+//             defination = searchResult
+//             explaination = jsonObject.defination
+
+//         }
+//     }
+//     const html = `
+//     <div class="defination">
+//     <h2>${defination}</h2>
+//         <p>
+//             ${explaination}
+//         </p>
+    
+//     </div>
+//   `;
+//     $(".investopedia .defination").replaceWith(html);
+
+// }
 
 function loadDictionary(json, searchResult) {
     let defination = "cannot be found";

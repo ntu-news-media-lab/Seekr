@@ -1,13 +1,22 @@
 import sys
 import struct
 import json
+import requests
+from bs4 import BeautifulSoup 
 
-# Encode a message for transmission, given its content.
-def encode_message(message_content):
-    encoded_content = json.dumps(message_content).encode("utf-8")
-    encoded_length = struct.pack('=I', len(encoded_content))
-    #  use struct.pack("10s", bytes), to pack a string of the length of 10 characters
-    return {'length': encoded_length, 'content': struct.pack(str(len(encoded_content))+"s",encoded_content)}
 
-messageBack = encode_message("thank you")
+url = 'https://www.dictionary.com/browse/hitman'
+source_code = requests.get(url)
+soup = BeautifulSoup(source_code.content, "lxml")    
+pos = soup.findAll("span", {"class": "one-click-content css-1p89gle e1q3nk1v4"})
+print(pos[0].text)
 
+
+# #lets call and add investopedia defination 
+# url = 'https://www.investopedia.com/search?q=private+equity'
+# source_code = requests.get(url)
+# plain_text = source_code.text
+# soup = BeautifulSoup(plain_text)    
+# for link in soup.findAll('div', {'id': 'search-results__description_1-0'}):
+#     titleInvestopedia = link.string
+#     print(titleInvestopedia)

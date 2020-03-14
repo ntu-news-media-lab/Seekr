@@ -38,24 +38,60 @@ f = open("C:/Users/yong wei/Documents/BT garage/Blueprint/host/temp.txt", "w")
 
 while 1:
     message = get_message()
-    message = message.replace(' ', '+')
     #Save the message from the app to a file.
     f.write(message)
     f.flush()
 
-    #lets call and add investopedia defination
-    url = 'https://www.investopedia.com/search?q='+message
-    source_code = requests.get(url)
-    plain_text = source_code.text
-    soup = BeautifulSoup(plain_text)
-    for link in soup.findAll('h3', {'class': 'comp search-results__title mntl-text-block'}):
-        title = link.string
-        f.write(title)
-        f.flush()
+    def get_investopedia():
+        #let us call and use Dictionary definition
+        investopediaMessage =message.replace(' ', '+')
+        url = 'https://www.investopedia.com/search?q='+investopediaMessage+' definition'
+        source_code = requests.get(url)
+        soup = BeautifulSoup(source_code.content, "lxml")    
+        pos = soup.findAll("div", {"id": "search-results__description_1-0"})
+        try:
+            definition = pos[0].text[1::]
+        except:
+            definition = "the word cannot be found "
+        f.write(definition)
+        f.flush
+        return definition
+
+    
+    def get_dictionary():
+        #let us call and use Dictionary definition
+        dictionaryMessage =message.replace(' ', '-')
+        url = 'https://www.dictionary.com/browse/'+dictionaryMessage
+        source_code = requests.get(url)
+        soup = BeautifulSoup(source_code.content, "lxml")    
+        pos = soup.findAll("span", {"class": "one-click-content css-1p89gle e1q3nk1v4"})
+        try:
+            definition = pos[1].text
+        except:
+            definition = "the word cannot be found "
+        f.write(definition)
+        f.flush
+        return definition
+
     
     
     #send a message back to javascript
-    send_message(encode_message(title))
+    send_message(encode_message(get_investopedia()))
+    send_message(encode_message(get_dictionary()))
 
 
+
+# old codes 
+    # def get_investopedia():
+    #     #lets call and add investopedia defination 
+    #     investopediaMessage = message.replace(' ', '+')
+    #     url = 'https://www.investopedia.com/search?q='+investopediaMessage+" definition"
+    #     source_code = requests.get(url)
+    #     plain_text = source_code.text
+    #     soup = BeautifulSoup(plain_text)    
+    #     for link in soup.findAll('div', {'id': 'search-results__description_1-0'}):
+    #         titleInvestopedia = link.string
+    #         f.write(titleInvestopedia)
+    #         f.flush()
+    #     return titleInvestopedia
 
