@@ -55,7 +55,7 @@ while 1:
             definition = "the word cannot be found "
         f.write(definition)
         f.flush
-        return definition
+        return ("I:"+definition)
 
     
     def get_dictionary():
@@ -71,7 +71,7 @@ while 1:
             definition = "the word cannot be found "
         f.write(definition)
         f.flush
-        return definition
+        return ("D:"+definition)
 
     
     

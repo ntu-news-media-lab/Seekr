@@ -9,7 +9,7 @@ $(".search-btn").click(function () {
     });
     sendNativeMessage();
     // loadInvestopedia(investopedia_json, str);
-    loadDictionary(dictionary_json, str);
+    // loadDictionary(dictionary_json, str);
     // alert(str);
 });
 
@@ -35,7 +35,14 @@ function onDisconnected() {
 
 function onNativeMessage(message) {
     // updateInvestopedia(JSON.stringify(message));
-    console.log(JSON.stringify(message));
+    console.log(JSON.stringify(message).substr(1,1));
+    console.log(JSON.stringify(message).substr(3,JSON.stringify(message).length-4));
+
+    if(JSON.stringify(message).substr(1,1) =="I"){
+        updateInvestopedia(JSON.stringify(message).substr(3,JSON.stringify(message).length-4))
+    }else{
+        updateDictionary(JSON.stringify(message).substr(3,JSON.stringify(message).length-4))
+    }
   }
 
 
@@ -67,44 +74,9 @@ function updateInvestopedia(message){
   $(".investopedia .defination").replaceWith(html);
 }
 
-
-// function loadInvestopedia(json, searchResult) {
-//     let defination = "cannot be found";
-//     let explaination = "cannot be found";
-//     var i;
-//     for (i = 0; i < json.length; i++) {
-//         if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
-//             var jsonObject = json[i]
-//             defination = searchResult
-//             explaination = jsonObject.defination
-
-//         }
-//     }
-//     const html = `
-//     <div class="defination">
-//     <h2>${defination}</h2>
-//         <p>
-//             ${explaination}
-//         </p>
-    
-//     </div>
-//   `;
-//     $(".investopedia .defination").replaceWith(html);
-
-// }
-
-function loadDictionary(json, searchResult) {
-    let defination = "cannot be found";
-    let explaination = "cannot be found";
-    var i;
-    for (i = 0; i < json.length; i++) {
-        if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
-            var jsonObject = json[i]
-            defination = searchResult
-            explaination = jsonObject.defination
-        }
-
-    }
+function updateDictionary(message){
+    let defination = $(".search-txt").val();;
+    let explaination = message;
     const html = `
     <div class="defination">
     <h2>${defination}</h2>
@@ -115,8 +87,8 @@ function loadDictionary(json, searchResult) {
     </div>
   `;
     $(".dictionary .defination").replaceWith(html);
-
 }
+
 
 
 $('#close-icon').click(function () {
@@ -166,3 +138,54 @@ function goChecklist() {
     window.location.href = "checklist.html";
 }
 
+
+// old codes
+// function loadInvestopedia(json, searchResult) {
+//     let defination = "cannot be found";
+//     let explaination = "cannot be found";
+//     var i;
+//     for (i = 0; i < json.length; i++) {
+//         if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
+//             var jsonObject = json[i]
+//             defination = searchResult
+//             explaination = jsonObject.defination
+
+//         }
+//     }
+//     const html = `
+//     <div class="defination">
+//     <h2>${defination}</h2>
+//         <p>
+//             ${explaination}
+//         </p>
+    
+//     </div>
+//   `;
+//     $(".investopedia .defination").replaceWith(html);
+
+// }
+
+// function loadDictionary(json, searchResult) {
+//     let defination = "cannot be found";
+//     let explaination = "cannot be found";
+//     var i;
+//     for (i = 0; i < json.length; i++) {
+//         if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
+//             var jsonObject = json[i]
+//             defination = searchResult
+//             explaination = jsonObject.defination
+//         }
+
+//     }
+//     const html = `
+//     <div class="defination">
+//     <h2>${defination}</h2>
+//         <p>
+//             ${explaination}
+//         </p>
+    
+//     </div>
+//   `;
+//     $(".dictionary .defination").replaceWith(html);
+
+// }
