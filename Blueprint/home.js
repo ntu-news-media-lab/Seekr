@@ -7,7 +7,7 @@ $(".search-btn").click(function () {
     chrome.storage.local.set({ searchResult: str }, function () {
         console.log('Value is set to ' + str);
     });
-    sendNativeMessage();
+    sendNativeMessage(str);
     // loadInvestopedia(investopedia_json, str);
     // loadDictionary(dictionary_json, str);
     // alert(str);
@@ -21,8 +21,7 @@ function connect() {
     port.onDisconnect.addListener(onDisconnected);
 }
 
-function sendNativeMessage() {
-    message = $(".search-txt").val()
+function sendNativeMessage(message) {
     port.postMessage(message);
     alert("sending message");
 }

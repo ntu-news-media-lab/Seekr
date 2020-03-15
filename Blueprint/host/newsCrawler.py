@@ -51,16 +51,14 @@ while 1:
 
     for article in content:
         articleTitle = article.findAll("a")
-        articleDescription = article.findAll("p")
         try:
             title = articleTitle[0].text
-            description = articleDescription[0].text
+            url = articleTitle[0]['href']
         except:
             title = "the word cannot be found "
-            description = "the word cannot be found "
+            url = "the link cannot be found "
 
-        send_message(encode_message("T:"+title))
-        send_message(encode_message("D:"+description))
+        send_message(encode_message("T:"+title+url))
 
 
 

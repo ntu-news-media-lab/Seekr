@@ -14,22 +14,21 @@ from selenium.webdriver.chrome.options import Options
 
 
 
-url = "https://www.businesstimes.com.sg/search/tabata"
+url = "https://www.businesstimes.com.sg/search/private%20equity"
 source_code = requests.get(url)
 soup = BeautifulSoup(source_code.content, "lxml")    
 content = soup.findAll("div", {"class": "media-body"})
 for article in content:
     articleTitle= article.findAll("a")
-    articleDescription = article.findAll("p")
     try:
         title = articleTitle[0].text
-        description = articleDescription[0].text
+        url = articleTitle[0]['href']
     except:
         title = "the word cannot be found "
-        description = "the word cannot be found "
+        url = "the link cannot be found "
 
     print(title)
-    print(description)
+    print(url)
     print("\n")
 
 
