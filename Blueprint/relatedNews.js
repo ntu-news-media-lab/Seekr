@@ -1,6 +1,7 @@
 connect();
 
 let contentLeft = true;
+var articleId = 0;
 
 chrome.storage.local.get(['searchResult'], function (result) {
     console.log('Value currently is ' + result.searchResult);
@@ -71,6 +72,7 @@ function wipePage() {
     $(".content .left").empty();
     $(".content .right").empty();
     contentLeft = true;
+    articleId = 0;
 }
 
 
@@ -134,7 +136,7 @@ function loadStories(title, url) {
 
     //create tile tag
     var tile = document.createElement('div');
-    tile.className = "tile " 
+    tile.className = "tile " + String(articleId);
 
     //create the headline element
     var headline = document.createElement('a');
@@ -145,14 +147,15 @@ function loadStories(title, url) {
 
     //create the add button
     var checklistButton = document.createElement('button');
-    checklistButton.className = "add small margin-top "
+    checklistButton.className = "add small margin-top "+ String(articleId);
     checklistButton.target = "_blank";
     checklistButton.innerHTML = "+";
-    // checklistButton.id = String(articleId);
+    checklistButton.id = String(articleId);
 
     //append all to the div class
     tile.appendChild(headline);
     tile.appendChild(checklistButton);
+    articleId = articleId+1
 
     //check if its even or odd
     if (contentLeft == true) {
