@@ -1,48 +1,78 @@
+connect();
+
 chrome.storage.local.get(['searchResult'], function (result) {
     console.log('Value currently is ' + result.searchResult);
     searchResult = result.searchResult;
     $(".search-box .search-txt").val(searchResult);
     loadStories(relatedNews_json, searchResult);
 });
-$('.search-box .content .column').on('click','.tile .add', function (event) {
+$('.search-box .content .column').on('click', '.tile .add', function (event) {
     //for reference
     // urls.push({url: url, title: title, image: image, done: false});
     // chrome.storage.local.set({urls: urls});
     var articleId = event.target.id;
 
-    var title = $(".column ." +String(articleId)+" .headline-small").html();
-    var url = $(".column ." +String(articleId)+" .headline-small").attr("href");
-    chrome.storage.local.get({urls: []}, function(result) {
+    var title = $(".column ." + String(articleId) + " .headline-small").html();
+    var url = $(".column ." + String(articleId) + " .headline-small").attr("href");
+    chrome.storage.local.get({ urls: [] }, function (result) {
         var urls = result.urls;
         if (!savedAlready(urls, title)) {
-          urls.push({title: title, url: url, done: false});
-          chrome.storage.local.set({urls: urls});
-          chrome.extension.sendRequest({});
-          console.log('Saving page ' + title);
+            urls.push({ title: title, url: url, done: false });
+            chrome.storage.local.set({ urls: urls });
+            chrome.extension.sendRequest({});
+            console.log('Saving page ' + title);
         } else {
-          console.log('You already saved this');
+            console.log('You already saved this');
         }
-      });
     });
+});
+
+function connect() {
+    var hostName = "com.google.chrome.example.newscrawler";
+    port = chrome.runtime.connectNative(hostName);
+    port.onMessage.addListener(onNativeMessage);
+    port.onDisconnect.addListener(onDisconnected);
+}
+
+function sendNativeMessage() {
+    message = $(".search-txt").val()
+    port.postMessage(message);
+    alert("sending message");
+}
+
+function onDisconnected() {
+    // appendMessage("Failed to connect: " + chrome.runtime.lastError.message);
+    alert("failed to connect")
+    port = null;
+}
+
+
+function onNativeMessage(message) {
+    // updateInvestopedia(JSON.stringify(message));
+    console.log(JSON.stringify(message).substr(1, 1));
+    console.log(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4));
+
+    if(JSON.stringify(message).substr(1,1) =="W"){
+        wipePage();
+    }
+    // else{
+    //     updateDictionary(JSON.stringify(message).substr(3,JSON.stringify(message).length-4))
+    // }
+}
+
+function wipePage(){
+    $(".content .left").empty();
+    $(".content .right").empty();
+}
 
 
 
-    function savedAlready(urls, title) {
-        var filteredUrls = urls.filter(function (el) {
-          return el.title === title;
-        });
-        return filteredUrls.length > 0;
-      }
-// function savedAlready(checklists, title) {
-//     var filteredChecklists = checklists.filter(function (el) {
-//       return el.title === url;
-//     });
-//     return filteredChecklists.length > 0;
-//   }
-
-// $('.content .column').on('click', '.tile .add', function(){
-//     alert('Button clicked!');
-// });
+function savedAlready(urls, title) {
+    var filteredUrls = urls.filter(function (el) {
+        return el.title === title;
+    });
+    return filteredUrls.length > 0;
+}
 
 
 $(".search-btn").click(function () {
@@ -50,6 +80,7 @@ $(".search-btn").click(function () {
     chrome.storage.local.set({ searchResult: str }, function () {
         console.log('Value is set to ' + str);
     });
+    sendNativeMessage();
     loadStories(relatedNews_json, str);
     // alert(str);
 });
@@ -63,7 +94,7 @@ $(".section #checklist").click(function () {
     goChecklist();
 });
 
-$('#close-icon').click(function() {
+$('#close-icon').click(function () {
     console.log('close');
     window.close();
 })
@@ -91,6 +122,8 @@ function haveArticles(json, searchResult) {
     }
 }
 
+
+
 function loadStories(json, searchResult) {
     var leftReadingList = document.querySelector('.content .left');
     var rightReadingList = document.querySelector('.content .right');
@@ -102,30 +135,30 @@ function loadStories(json, searchResult) {
         for (i = 0; i < json.length; i++) {
             if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
                 var jsonObject = json[i];
-                              
-                
-                
+
+
+
                 //create tile tag
                 var tile = document.createElement('div');
-                tile.className = "tile "+String(articleId);
+                tile.className = "tile " + String(articleId);
 
-               //create image tag
+                //create image tag
                 var image = document.createElement('img');
-                image.src=jsonObject.img_src;
-                
+                image.src = jsonObject.img_src;
+
                 //create the headline element
                 var headline = document.createElement('a');
                 headline.href = jsonObject.url;
                 headline.className = "headline-small";
                 headline.target = "_blank";
-                headline.innerHTML=jsonObject.headline;
+                headline.innerHTML = jsonObject.headline;
 
                 //create the add button
                 var checklistButton = document.createElement('button');
-                checklistButton.className = "add small margin-top "+String(articleId);
+                checklistButton.className = "add small margin-top " + String(articleId);
                 checklistButton.target = "_blank";
-                checklistButton.innerHTML="+";
-                checklistButton.id=String(articleId);
+                checklistButton.innerHTML = "+";
+                checklistButton.id = String(articleId);
                 // checklistButton.addEventListener('click', function() {
                 //     var articleId = checklistButton.getAttribute("id");
                 //     var title = jsonObject.headline;
@@ -142,8 +175,8 @@ function loadStories(json, searchResult) {
                 tile.appendChild(image);
                 tile.appendChild(headline);
                 tile.appendChild(checklistButton);
-                articleId= articleId +1;
-               
+                articleId = articleId + 1;
+
 
                 //check if its even or odd
                 if (contentLeft == true) {
@@ -156,17 +189,17 @@ function loadStories(json, searchResult) {
                     contentLeft = true;
                 }
 
-            //     const html = `
-            //     <div class="tile">
-            //         <img src="${jsonObject.img_src}">
-            //         <a href="${jsonObject.url}" class="headline-small" target="_blank">
-            //             ${jsonObject.headline}
-            //         </a>
-            //         <button class="add small margin-top" target="_blank">
-            //             <i class="fas fa-plus-circle"></i>
-            //         </button>
-            //     </div>
-            //   `;
+                //     const html = `
+                //     <div class="tile">
+                //         <img src="${jsonObject.img_src}">
+                //         <a href="${jsonObject.url}" class="headline-small" target="_blank">
+                //             ${jsonObject.headline}
+                //         </a>
+                //         <button class="add small margin-top" target="_blank">
+                //             <i class="fas fa-plus-circle"></i>
+                //         </button>
+                //     </div>
+                //   `;
             }
 
         }
@@ -176,7 +209,7 @@ function loadStories(json, searchResult) {
 }
 
 
-
+// old functions 
 
 
 // $(".content").find(".tile .add").click(function () {
@@ -349,3 +382,17 @@ function loadStories(json, searchResult) {
 //     window.close();
 //   });
 // // });
+
+
+
+// function savedAlready(checklists, title) {
+//     var filteredChecklists = checklists.filter(function (el) {
+//       return el.title === url;
+//     });
+//     return filteredChecklists.length > 0;
+//   }
+
+// $('.content .column').on('click', '.tile .add', function(){
+//     alert('Button clicked!');
+// });
+

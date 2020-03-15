@@ -14,17 +14,23 @@ from selenium.webdriver.chrome.options import Options
 
 
 
-url = "https://www.businesstimes.com.sg/search/private%20equity"
+url = "https://www.businesstimes.com.sg/search/tabata"
 source_code = requests.get(url)
 soup = BeautifulSoup(source_code.content, "lxml")    
 content = soup.findAll("div", {"class": "media-body"})
 for article in content:
-    pos= article.findAll("a")
+    articleTitle= article.findAll("a")
+    articleDescription = article.findAll("p")
     try:
-        definition = pos[0].text
+        title = articleTitle[0].text
+        description = articleDescription[0].text
     except:
-        definition = "the word cannot be found "
-    print(definition)
+        title = "the word cannot be found "
+        description = "the word cannot be found "
+
+    print(title)
+    print(description)
+    print("\n")
 
 
 #old code
