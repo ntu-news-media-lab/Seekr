@@ -5,3 +5,4 @@
 :: Change HKCU to HKLM if you want to install globally.
 :: %~dp0 is the directory containing this bat script and ends with a backslash.
 REG ADD "HKCU\Software\Google\Chrome\NativeMessagingHosts\com.google.chrome.example.webcrawler" /ve /t REG_SZ /d "%~dp0webCrawler.json" /f
+REG ADD "HKCU\Software\Google\Chrome\NativeMessagingHosts\com.google.chrome.example.newscrawler" /ve /t REG_SZ /d "%~dp0newsCrawler.json" /f

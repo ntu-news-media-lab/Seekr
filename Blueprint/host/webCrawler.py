@@ -1,43 +1,97 @@
-#!/usr/bin/env python
-
 import sys
 import codecs
+import requests
+from bs4 import BeautifulSoup 
+import json
+import struct
 
-# A file to be used to save the message from the app.
+
+
+# Read a message from stdin and decode it.
+def get_message():
+    raw_length = sys.stdin.buffer.read(4)
+
+    if not raw_length:
+        sys.exit(0)
+    message_length = struct.unpack('=I', raw_length)[0]
+    message = sys.stdin.buffer.read(message_length).decode("utf-8")
+    return json.loads(message)
+
+
+# Encode a message for transmission, given its content.
+def encode_message(message_content):
+    encoded_content = json.dumps(message_content).encode("utf-8")
+    encoded_length = struct.pack('=I', len(encoded_content))
+    #  use struct.pack("10s", bytes), to pack a string of the length of 10 characters
+    return {'length': encoded_length, 'content': struct.pack(str(len(encoded_content))+"s",encoded_content)}
+
+
+# Send an encoded message to stdout.
+def send_message(encoded_message):
+    sys.stdout.buffer.write(encoded_message['length'])
+    sys.stdout.buffer.write(encoded_message['content'])
+    sys.stdout.buffer.flush()
+
+
+
 f = open("C:/Users/yong wei/Documents/BT garage/Blueprint/host/temp.txt", "w")
-# g = open("C:/Users/yong wei/Documents/BT garage/Blueprint/host/temp1.txt", "w")
 
 while 1:
-    # # First four bytes from app notify us of the message's length.
-    text_length_bytes = sys.stdin.read(4)
+    message = get_message()
+    #Save the message from the app to a file.
+    f.write(message)
+    f.flush()
 
-    # # # Unpack the text length WITHOUT using struct.unpack.
-    text_length = ord(text_length_bytes[0])
+    def get_investopedia():
+        #let us call and use Dictionary definition
+        investopediaMessage =message.replace(' ', '+')
+        url = 'https://www.investopedia.com/search?q='+investopediaMessage+' definition'
+        source_code = requests.get(url)
+        soup = BeautifulSoup(source_code.content, "lxml")    
+        pos = soup.findAll("div", {"id": "search-results__description_1-0"})
+        try:
+            definition = pos[0].text[1::]
+        except:
+            definition = "the word cannot be found "
+        f.write(definition)
+        f.flush
+        return ("I:"+definition)
 
-    # # # Get the message from the app.
-    messFromApp = codecs.decode(sys.stdin.read(text_length), "utf-8")
+    
+    def get_dictionary():
+        #let us call and use Dictionary definition
+        dictionaryMessage =message.replace(' ', '-')
+        url = 'https://www.dictionary.com/browse/'+dictionaryMessage
+        source_code = requests.get(url)
+        soup = BeautifulSoup(source_code.content, "lxml")    
+        pos = soup.findAll("span", {"class": "one-click-content css-1p89gle e1q3nk1v4"})
+        try:
+            definition = pos[1].text
+        except:
+            definition = "the word cannot be found "
+        f.write(definition)
+        f.flush
+        return ("D:"+definition)
 
-    # # # Save the message from the app to a file.
-    # f.write(messFromApp)
-    # f.flush()
+    
+    
+    #send a message back to javascript
+    send_message(encode_message(get_investopedia()))
+    send_message(encode_message(get_dictionary()))
 
-#   #We will notify the app of the length of the message sent to the program from the app.
-#   returnValue = str(text_length - 11)
-#   text = '{"text":" Thanks for the message of ' + returnValue + ' characters."}'
 
-#   #Calculate length of the message you are sending back, and do some formatting.
-#   inLength = hex(len(text)).replace('0x','')
 
-#   #Pad with bytes, for little-endian.
-#   if len(inLength) < 1.5:
-#      inLength = '0'+inLength
+# old codes 
+    # def get_investopedia():
+    #     #lets call and add investopedia defination 
+    #     investopediaMessage = message.replace(' ', '+')
+    #     url = 'https://www.investopedia.com/search?q='+investopediaMessage+" definition"
+    #     source_code = requests.get(url)
+    #     plain_text = source_code.text
+    #     soup = BeautifulSoup(plain_text)    
+    #     for link in soup.findAll('div', {'id': 'search-results__description_1-0'}):
+    #         titleInvestopedia = link.string
+    #         f.write(titleInvestopedia)
+    #         f.flush()
+    #     return titleInvestopedia
 
-#   inLength = inLength + '000000'
-
-#   #Pack the message length WITHOUT using struct.pack.
-#   inLength = codecs.decode(inLength, "hex")
-
-#   #Write to the stream the message length and the message contents.
-#   sys.stdout.write(inLength)
-#   sys.stdout.write(text)
-#   sys.stdout.flush()

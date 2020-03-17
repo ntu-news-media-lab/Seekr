@@ -7,9 +7,9 @@ $(".search-btn").click(function () {
     chrome.storage.local.set({ searchResult: str }, function () {
         console.log('Value is set to ' + str);
     });
-    sendNativeMessage();
-    loadInvestopedia(investopedia_json, str);
-    loadDictionary(dictionary_json, str);
+    sendNativeMessage(str);
+    // loadInvestopedia(investopedia_json, str);
+    // loadDictionary(dictionary_json, str);
     // alert(str);
 });
 
@@ -17,12 +17,12 @@ function connect() {
     var hostName = "com.google.chrome.example.webcrawler";
     // appendMessage("Connecting to native messaging host <b>" + hostName + "</b>")
     port = chrome.runtime.connectNative(hostName);
-    // port.onMessage.addListener(onNativeMessage);
+    port.onMessage.addListener(onNativeMessage);
     port.onDisconnect.addListener(onDisconnected);
 }
 
-function sendNativeMessage() {
-    port.postMessage({ "text": "Hello, my_application" });
+function sendNativeMessage(message) {
+    port.postMessage(message);
     alert("sending message");
 }
 
@@ -31,6 +31,18 @@ function onDisconnected() {
     alert("failed to connect")
     port = null;
 }
+
+function onNativeMessage(message) {
+    // updateInvestopedia(JSON.stringify(message));
+    console.log(JSON.stringify(message).substr(1,1));
+    console.log(JSON.stringify(message).substr(3,JSON.stringify(message).length-4));
+
+    if(JSON.stringify(message).substr(1,1) =="I"){
+        updateInvestopedia(JSON.stringify(message).substr(3,JSON.stringify(message).length-4))
+    }else{
+        updateDictionary(JSON.stringify(message).substr(3,JSON.stringify(message).length-4))
+    }
+  }
 
 
 
@@ -46,18 +58,9 @@ $(".section #checklist").click(function () {
 });
 
 
-function loadInvestopedia(json, searchResult) {
-    let defination = "cannot be found";
-    let explaination = "cannot be found";
-    var i;
-    for (i = 0; i < json.length; i++) {
-        if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
-            var jsonObject = json[i]
-            defination = searchResult
-            explaination = jsonObject.defination
-
-        }
-    }
+function updateInvestopedia(message){
+    let defination = $(".search-txt").val();;
+    let explaination = message;
     const html = `
     <div class="defination">
     <h2>${defination}</h2>
@@ -67,22 +70,12 @@ function loadInvestopedia(json, searchResult) {
     
     </div>
   `;
-    $(".investopedia .defination").replaceWith(html);
-
+  $(".investopedia .defination").replaceWith(html);
 }
 
-function loadDictionary(json, searchResult) {
-    let defination = "cannot be found";
-    let explaination = "cannot be found";
-    var i;
-    for (i = 0; i < json.length; i++) {
-        if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
-            var jsonObject = json[i]
-            defination = searchResult
-            explaination = jsonObject.defination
-        }
-
-    }
+function updateDictionary(message){
+    let defination = $(".search-txt").val();;
+    let explaination = message;
     const html = `
     <div class="defination">
     <h2>${defination}</h2>
@@ -93,8 +86,8 @@ function loadDictionary(json, searchResult) {
     </div>
   `;
     $(".dictionary .defination").replaceWith(html);
-
 }
+
 
 
 $('#close-icon').click(function () {
@@ -144,3 +137,54 @@ function goChecklist() {
     window.location.href = "checklist.html";
 }
 
+
+// old codes
+// function loadInvestopedia(json, searchResult) {
+//     let defination = "cannot be found";
+//     let explaination = "cannot be found";
+//     var i;
+//     for (i = 0; i < json.length; i++) {
+//         if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
+//             var jsonObject = json[i]
+//             defination = searchResult
+//             explaination = jsonObject.defination
+
+//         }
+//     }
+//     const html = `
+//     <div class="defination">
+//     <h2>${defination}</h2>
+//         <p>
+//             ${explaination}
+//         </p>
+    
+//     </div>
+//   `;
+//     $(".investopedia .defination").replaceWith(html);
+
+// }
+
+// function loadDictionary(json, searchResult) {
+//     let defination = "cannot be found";
+//     let explaination = "cannot be found";
+//     var i;
+//     for (i = 0; i < json.length; i++) {
+//         if (searchResult.toLowerCase() == json[i].keyword.toLowerCase()) {
+//             var jsonObject = json[i]
+//             defination = searchResult
+//             explaination = jsonObject.defination
+//         }
+
+//     }
+//     const html = `
+//     <div class="defination">
+//     <h2>${defination}</h2>
+//         <p>
+//             ${explaination}
+//         </p>
+    
+//     </div>
+//   `;
+//     $(".dictionary .defination").replaceWith(html);
+
+// }
