@@ -32,13 +32,13 @@ def send_message(encoded_message):
     sys.stdout.buffer.flush()
 
 
-f = open("C:/Users/yong wei/Documents/BT garage/Blueprint/host/temp.txt", "w")
+# f = open("C:/Users/yongw/Documents/BtGarage/Blueprint/host/temp.txt", "w")
 
 while 1:
     message = get_message()
     # Save the message from the app to a file.
-    f.write(message)
-    f.flush()
+    # f.write(message)
+    # f.flush()
 
     newsMessage = message.replace(' ', '%20')
     url = "https://www.businesstimes.com.sg/search/"+newsMessage

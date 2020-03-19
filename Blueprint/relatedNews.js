@@ -130,6 +130,10 @@ function haveArticles(json, searchResult) {
     }
 }
 
+function getImageUrl(){
+    return ran_key = images_json[Math.floor(Math.random() *images_json.length)].url;
+}
+
 function loadStories(title, url) {
     var leftReadingList = document.querySelector('.content .left');
     var rightReadingList = document.querySelector('.content .right');
@@ -137,6 +141,10 @@ function loadStories(title, url) {
     //create tile tag
     var tile = document.createElement('div');
     tile.className = "tile " + String(articleId);
+
+    //create and append images
+    var image = document.createElement('img');
+    image.src = getImageUrl();
 
     //create the headline element
     var headline = document.createElement('a');
@@ -153,6 +161,7 @@ function loadStories(title, url) {
     checklistButton.id = String(articleId);
 
     //append all to the div class
+    tile.appendChild(image)
     tile.appendChild(headline);
     tile.appendChild(checklistButton);
     articleId = articleId+1

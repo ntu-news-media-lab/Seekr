@@ -34,13 +34,13 @@ def send_message(encoded_message):
 
 
 
-f = open("C:/Users/yong wei/Documents/BT garage/Blueprint/host/temp.txt", "w")
+# f = open("C:/Users/yongw/Documents/BtGarage/Blueprint/host/temp.txt", "w")
 
 while 1:
     message = get_message()
     #Save the message from the app to a file.
-    f.write(message)
-    f.flush()
+    # f.write(message)
+    # f.flush()
 
     def get_investopedia():
         #let us call and use Dictionary definition
