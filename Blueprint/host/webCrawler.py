@@ -66,7 +66,7 @@ while 1:
         soup = BeautifulSoup(source_code.content, "lxml")    
         pos = soup.findAll("span", {"class": "one-click-content css-1p89gle e1q3nk1v4"})
         try:
-            definition = pos[1].text
+            definition = pos[0].text
         except:
             definition = "the word cannot be found "
         f.write(definition)

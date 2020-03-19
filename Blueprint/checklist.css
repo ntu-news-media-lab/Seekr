@@ -15,7 +15,7 @@
 } 
 
 .section .button{
-    background-color: #C8C8C8; 
+    background-color: black; 
     color: white;
     font-size: 15px;
     text-align: center;
@@ -24,6 +24,15 @@
     float: left;
     width: 100%;
     height: 30px;
+}
+
+.section .button .menu_image{
+    width: 30px;
+    height: 30px;
+}
+
+#checklist{
+    background-color: #2F4F4F;
 }
 
 
