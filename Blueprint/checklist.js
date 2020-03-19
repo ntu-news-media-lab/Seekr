@@ -62,7 +62,30 @@ function loadReadingList() {
                 });
             });
 
+            //create the drop down menu 
+            // <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+            var dropDown = document.createElement('button');
+            dropDown.className="dropbtn"
+            dropDown.innerHTML ="drop"
 
+            //create div tag to contain all the elements
+            var myDropdown = document.createElement('div')
+            myDropdown.id = "myDropdown"
+            myDropdown.className="dropdown-content"
+
+            //create individual elements inside the drop down menu
+            //<a href="#home">Home</a>
+            var dropItem = document.createElement('a')
+            dropItem.innerHTML = "item 1"
+            
+            //append all the items 
+            myDropdown.appendChild(dropItem)
+            dropDown.appendChild(myDropdown)
+
+            //function to open up the dropdown menu
+            
+            
+            //create the checklist title
             var label = document.createElement('label');
             label.innerHTML = el.title;
 
@@ -73,6 +96,7 @@ function loadReadingList() {
 
             item.appendChild(deleteIcon);
             item.appendChild(checkBox);
+            item.appendChild(dropDown)
             item.appendChild(link);
 
 
