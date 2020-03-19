@@ -53,8 +53,6 @@ while 1:
             definition = pos[0].text[1::]
         except:
             definition = "the word cannot be found "
-        f.write(definition)
-        f.flush
         return ("I:"+definition)
 
     
@@ -69,8 +67,6 @@ while 1:
             definition = pos[0].text
         except:
             definition = "the word cannot be found "
-        f.write(definition)
-        f.flush
         return ("D:"+definition)
 
     
