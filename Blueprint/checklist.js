@@ -3,6 +3,17 @@ window.onload = function () {
 
 };
 
+$('.search-box').on('click','.dropbtn', function (event) {
+    //for reference
+    // urls.push({url: url, title: title, image: image, done: false});
+    // chrome.storage.local.set({urls: urls});
+    var articleId = event.target.id;
+    console.log(articleId);
+    document.getElementById("myDropdown"+String(articleId)).classList.toggle("show");
+
+    
+    });
+
 
 $(".section #search").click(function () {
     goHome();
@@ -33,6 +44,7 @@ function goHome() {
 function loadReadingList() {
     var readingList = document.querySelector('.search-box');
     readingList.innerHTML = '';
+    var counter = 0;
 
     chrome.storage.local.get({ urls: [] }, function (result) {
         result.urls.forEach(function (el) {
@@ -65,12 +77,14 @@ function loadReadingList() {
             //create the drop down menu 
             // <button onclick="myFunction()" class="dropbtn">Dropdown</button>
             var dropDown = document.createElement('button');
-            dropDown.className="dropbtn"
-            dropDown.innerHTML ="drop"
+            dropDown.className="dropbtn";
+            dropDown.innerHTML ="drop";
+            dropDown.id = counter;
+            
 
             //create div tag to contain all the elements
             var myDropdown = document.createElement('div')
-            myDropdown.id = "myDropdown"
+            myDropdown.id = "myDropdown"+String(counter);
             myDropdown.className="dropdown-content"
 
             //create individual elements inside the drop down menu
@@ -82,9 +96,11 @@ function loadReadingList() {
             myDropdown.appendChild(dropItem)
             dropDown.appendChild(myDropdown)
 
-            //function to open up the dropdown menu
-            
-            
+            //button on click function
+            // dropDown.addEventListener("click", function () {
+            //     document.getElementById("myDropdown"+String(counter)).classList.toggle("show");
+            // });
+
             //create the checklist title
             var label = document.createElement('label');
             label.innerHTML = el.title;
@@ -100,7 +116,9 @@ function loadReadingList() {
             item.appendChild(link);
 
 
-            readingList.appendChild(item)
+            readingList.appendChild(item);
+
+            counter++;
 
 
 
@@ -112,6 +130,19 @@ function loadReadingList() {
         });
     });
 }
+
+window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
 
 function updateDone(url, callback) {
     chrome.storage.local.get({ urls: [] }, function (result) {
