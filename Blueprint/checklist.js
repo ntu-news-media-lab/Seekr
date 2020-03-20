@@ -23,6 +23,10 @@ $(".section #related-news").click(function () {
     goRelatedNews();
 });
 
+$(".section #my-folder").click(function () {
+    goCategory();
+});
+
 $('#close-icon').click(function() {
     console.log('close');
     window.close();
@@ -39,6 +43,11 @@ function goHome() {
     console.log('Go search page');
     chrome.browserAction.setPopup({ popup: "home.html" });
     window.location.href = "home.html";
+}
+function goCategory(){
+    console.log('Go category page');
+    chrome.browserAction.setPopup({ popup: "category.html" });
+    window.location.href = "category.html";
 }
 
 function loadReadingList() {

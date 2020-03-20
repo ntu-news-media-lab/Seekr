@@ -102,6 +102,10 @@ $(".section #checklist").click(function () {
     goChecklist();
 });
 
+$(".section #my-folder").click(function () {
+    goCategory();
+});
+
 $('#close-icon').click(function () {
     console.log('close');
     window.close();
@@ -118,6 +122,12 @@ function goChecklist() {
     console.log('Go checklist page');
     chrome.browserAction.setPopup({ popup: "checklist.html" });
     window.location.href = "checklist.html";
+}
+
+function goCategory(){
+    console.log('Go category page');
+    chrome.browserAction.setPopup({ popup: "category.html" });
+    window.location.href = "category.html";
 }
 
 

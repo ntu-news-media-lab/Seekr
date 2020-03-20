@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Related News</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/d60dc9f679.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="common.css" />
+    <link rel="stylesheet" type="text/css" href="category.css" />
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <img id="close-icon" src="./img/delete.png">
+        <img src="./img/Garage.png" class="garage-logo" />
+    </div>
+
+    <table class="section">
+        <tr>
+            <td><a class="button" href="#" id="search">
+                <img src="./img/icons/search.png" class="menu_image">
+            </a></td>
+            <td><a class="button" href="#" id="related-news">
+                <img src="./img/icons/relatedArticles.png" class="menu_image">
+            </a></td>
+            <td><a class="button" href="#" id="checklist">
+                <img src="./img/icons/checklist.png" class="menu_image">
+            </a></td>
+            <td><a class="button" href="#" id="my-folder">
+                <img src="./img/icons/myFolders.png" class="menu_image">
+            </a></td>
+        </tr>
+    </table>
+    <div class="category-box">
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn">+CREATE CATEGORY</button>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Input your category</h2>
+            </div>
+            <div class="modal-body">
+                <label for="fname">Category:</label>
+                <input type="text" id="fname" name="fname">
+                <button type="button" id="submit">submit</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+        
+    </div>
+
+    <!-- <script src="json/relatedNewsJson.js"></script> -->
+    <script src="category.js"></script>
+</body>
+
+</html>

@@ -57,6 +57,10 @@ $(".section #checklist").click(function () {
     goChecklist();
 });
 
+$(".section #my-folder").click(function () {
+    goCategory();
+});
+
 
 function updateInvestopedia(message){
     let defination = $(".search-txt").val();;
@@ -135,6 +139,12 @@ function goChecklist() {
     console.log('Go checklist page');
     chrome.browserAction.setPopup({ popup: "checklist.html" });
     window.location.href = "checklist.html";
+}
+
+function goCategory(){
+    console.log('Go category page');
+    chrome.browserAction.setPopup({ popup: "category.html" });
+    window.location.href = "category.html";
 }
 
 
