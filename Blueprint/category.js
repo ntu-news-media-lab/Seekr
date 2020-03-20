@@ -11,6 +11,19 @@ $(".section #checklist").click(function () {
     goChecklist();
 });
 
+window.onload = function () {
+    loadList();
+
+};
+
+// //clear all list
+// chrome.storage.local.remove({categories:[] },function(){
+//     var error = chrome.runtime.lastError;
+//        if (error) {
+//            console.error(error);
+//        }
+//    });
+
 
 
 function goHome() {
@@ -31,7 +44,7 @@ function goChecklist() {
     window.location.href = "checklist.html";
 }
 
-$('#close-icon').click(function() {
+$('#close-icon').click(function () {
     console.log('close');
     window.close();
 })
@@ -49,25 +62,91 @@ var btn = document.getElementById("myBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
+btn.onclick = function () {
+    modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span.onclick = function () {
+    modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
+
 
 //getting the value in the text box
 
-$("#submit").click(function(){
-    var str = $("#fname").val();
-    alert(str);
+$("#submit").click(function () {
+    var localStr = $("#fname").val();
+    chrome.storage.local.get({ categories: [] }, function (result) {
+        var categories = result.categories;
+        categories.push({title:localStr});
+        chrome.storage.local.set({ categories: categories });
+        chrome.extension.sendRequest({});
+        console.log('Saving page ' + localStr);
+        alert(localStr+" created")
+    });
+
 });
+
+$(".close").click(function () {
+    loadList();
+
+})
+
+
+
+//loading all the different categories 
+
+function loadList() {
+    cat1 = document.querySelector('.categories');
+    cat1.innerHTML = '';
+    chrome.storage.local.get({ categories:[] }, function (result) {
+        result.categories.forEach(function (el) {
+
+            //create the tag for the title of category
+            var categoryItem = document.createElement('h3');
+            categoryItem.innerText = el.title;            
+
+            //delete icon button
+            var deleteIcon = document.createElement('img');
+            deleteIcon.id = "checklist-delete";
+            deleteIcon.src = "./img/delete.png";
+            deleteIcon.addEventListener('click', function () {
+                removeUrl(el.title, function () {
+                    loadList();
+                });
+            });
+            cat1.appendChild(deleteIcon);
+            cat1.appendChild(categoryItem);
+
+        })
+
+    });
+}
+
+//removing the item from list
+function removeUrl(title, callback) {
+    chrome.storage.local.get({ categories: [] }, function (result) {
+        var categories = result.categories.filter(function (el) {
+            return el.title !== title;
+        });
+        chrome.storage.local.set({ categories: categories });
+        chrome.extension.sendRequest({});
+        callback();
+    });
+}
+
+
+
+
+
+
+
+
+
