@@ -144,3 +144,19 @@
     position: absolute;
     right: 8;
 }
+.categories{
+    position: relative;
+}
+
+.categories .catContainer{
+    position: relative;
+}
+
+
+.categories .category-delete{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 10px;
+    right: 10px;
+}

@@ -115,15 +115,24 @@ function loadList() {
 
             //delete icon button
             var deleteIcon = document.createElement('img');
-            deleteIcon.id = "checklist-delete";
+            deleteIcon.className = "category-delete";
             deleteIcon.src = "./img/delete.png";
             deleteIcon.addEventListener('click', function () {
                 removeUrl(el.title, function () {
                     loadList();
                 });
             });
-            cat1.appendChild(deleteIcon);
-            cat1.appendChild(categoryItem);
+
+            //create container
+            var container = document.createElement('div');
+            container.className = "catContainer"
+            container.appendChild(categoryItem);
+            container.appendChild(deleteIcon);
+
+            //append container to cat1
+
+            cat1.appendChild(container);
+           
 
         })
 
