@@ -118,7 +118,7 @@ function loadList() {
             deleteIcon.className = "category-delete";
             deleteIcon.src = "./img/delete.png";
             deleteIcon.addEventListener('click', function () {
-                removeUrl(el.title, function () {
+                removeTitle(el.title, function () {
                     loadList();
                 });
             });
@@ -146,7 +146,7 @@ function loadList() {
                         deleteIcon.src = "./img/delete.png";
                         deleteIcon.addEventListener('click', function () {
                             removeUrl(e2.url, function () {
-                                loadReadingList();
+                                loadList();
                             });
                         });
 
@@ -157,7 +157,7 @@ function loadList() {
                         }
                         checkBox.addEventListener('click', function () {
                             updateDone(e2.url, function () {
-                                loadReadingList();
+                                loadList();
                             });
                         });
 
@@ -194,7 +194,7 @@ function loadList() {
 }
 
 //removing the item from list
-function removeUrl(title, callback) {
+function removeTitle(title, callback) {
     chrome.storage.local.get({ categories: [] }, function (result) {
         var categories = result.categories.filter(function (el) {
             return el.title !== title;
@@ -204,6 +204,33 @@ function removeUrl(title, callback) {
         callback();
     });
 }
+
+// remove individual item from checklist
+function removeUrl(url, callback) {
+    chrome.storage.local.get({ urls: [] }, function (result) {
+        var urls = result.urls.filter(function (el) {
+            return el.url !== url;
+        });
+        chrome.storage.local.set({ urls: urls });
+        chrome.extension.sendRequest({});
+        callback();
+    });
+}
+
+function updateDone(url, callback) {
+    chrome.storage.local.get({ urls: [] }, function (result) {
+        var urls = result.urls;
+        urls.forEach(function (el) {
+            if (el.url == url) {
+                el.done = !(el.done);
+                chrome.storage.local.set({ urls: urls });
+                chrome.extension.sendRequest({});
+                callback();
+            }
+        });
+    });
+}
+
 
 
 
