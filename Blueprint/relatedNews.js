@@ -21,7 +21,7 @@ $('.search-box .content .column').on('click', '.tile .add', function (event) {
     chrome.storage.local.get({ urls: [] }, function (result) {
         var urls = result.urls;
         if (!savedAlready(urls, title)) {
-            urls.push({ title: title, url: url, done: false });
+            urls.push({ title: title, url: url, category:"none", done: false });
             chrome.storage.local.set({ urls: urls });
             chrome.extension.sendRequest({});
             console.log('Saving page ' + title);

@@ -98,11 +98,23 @@ function loadReadingList() {
 
             //create individual elements inside the drop down menu
             //<a href="#home">Home</a>
-            var dropItem = document.createElement('a')
-            dropItem.innerHTML = "item 1"
+            chrome.storage.local.get({ categories:[] }, function (result) {
+                result.categories.forEach(function (e2) {
+                    var dropItem = document.createElement('a')
+                    dropItem.innerHTML = e2.title
+                    dropItem.addEventListener('click', function(){
+                        changeCategory(e2.title,el.url, function(){
+                            loadReadingList();
+                        });
+                        console.log(e2.title);
+                    });
+                    myDropdown.appendChild(dropItem)
+
+                })
+
+            });
             
-            //append all the items 
-            myDropdown.appendChild(dropItem)
+            //append all the items             
             dropDown.appendChild(myDropdown)
 
             //button on click function
@@ -175,5 +187,20 @@ function removeUrl(url, callback) {
         chrome.storage.local.set({ urls: urls });
         chrome.extension.sendRequest({});
         callback();
+    });
+}
+
+//updating the category of the checklist
+function changeCategory(category,url, callback){
+    chrome.storage.local.get({ urls: [] }, function (result) {
+        var urls = result.urls;
+        urls.forEach(function (el) {
+            if (el.url == url) {
+                el.category = category;
+                chrome.storage.local.set({ urls: urls });
+                chrome.extension.sendRequest({});
+                callback();
+            }
+        });
     });
 }

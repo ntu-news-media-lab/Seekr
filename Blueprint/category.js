@@ -85,11 +85,11 @@ $("#submit").click(function () {
     var localStr = $("#fname").val();
     chrome.storage.local.get({ categories: [] }, function (result) {
         var categories = result.categories;
-        categories.push({title:localStr});
+        categories.push({ title: localStr });
         chrome.storage.local.set({ categories: categories });
         chrome.extension.sendRequest({});
         console.log('Saving page ' + localStr);
-        alert(localStr+" created")
+        alert(localStr + " created")
     });
 
 });
@@ -106,12 +106,12 @@ $(".close").click(function () {
 function loadList() {
     cat1 = document.querySelector('.categories');
     cat1.innerHTML = '';
-    chrome.storage.local.get({ categories:[] }, function (result) {
+    chrome.storage.local.get({ categories: [] }, function (result) {
         result.categories.forEach(function (el) {
 
             //create the tag for the title of category
             var categoryItem = document.createElement('h3');
-            categoryItem.innerText = el.title;            
+            categoryItem.innerText = el.title;
 
             //delete icon button
             var deleteIcon = document.createElement('img');
@@ -129,14 +129,68 @@ function loadList() {
             container.appendChild(categoryItem);
             container.appendChild(deleteIcon);
 
-            //append container to cat1
 
+
+
+            //create the list of tags
+            chrome.storage.local.get({ urls: [] }, function (result) {
+                result.urls.forEach(function (e2) {
+                    if (e2.category == el.title) {
+                        //item div tag
+                        var item = document.createElement('div');
+                        item.className = "item";
+
+                        //delete icon button
+                        var deleteIcon = document.createElement('img');
+                        deleteIcon.id = "checklist-delete";
+                        deleteIcon.src = "./img/delete.png";
+                        deleteIcon.addEventListener('click', function () {
+                            removeUrl(e2.url, function () {
+                                loadReadingList();
+                            });
+                        });
+
+                        var checkBox = document.createElement('input');
+                        checkBox.type = "checkbox";
+                        if (e2.done == true) {
+                            checkBox.checked = true;
+                        }
+                        checkBox.addEventListener('click', function () {
+                            updateDone(e2.url, function () {
+                                loadReadingList();
+                            });
+                        });
+
+                        //create the checklist title
+                        var label = document.createElement('label');
+                        label.innerHTML = e2.title;
+
+                        var link = document.createElement('a');
+                        link.href = e2.url;
+                        link.target = "_blank";
+                        link.appendChild(label);
+
+                        item.appendChild(deleteIcon);
+                        item.appendChild(checkBox);
+                        item.appendChild(link);
+
+                        container.append(item);
+                    }
+
+
+
+                });
+            });
+            //append container to cat1
             cat1.appendChild(container);
-           
 
         })
 
+
+
     });
+
+
 }
 
 //removing the item from list
