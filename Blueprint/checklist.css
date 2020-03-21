@@ -157,17 +157,20 @@ input[type=checkbox]:checked + label:before{
     display: none;
     position: relative;
     top: 40px;
-    float: left;
+    float:left;
     background-color:white;
     border-radius: 10px;
-    margin: 5px;
+    margin-top: 8px;
+    margin-left: 25px;
+    width: 120px;
+    text-align: center;
     
   }
 
   .category-cell a{
-    padding: 15px;
+    padding-left: 15px;
+    padding-right:15px;
     border-radius: 10px;
-    height: 20px;
     font-size: large;
     text-align: center;
   }

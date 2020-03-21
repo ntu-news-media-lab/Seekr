@@ -1,6 +1,8 @@
+var slideIndex =1;
+
 window.onload = function () {
     loadReadingList();
-    setTimeout(function () { showSlides(1); }, 100);
+    setTimeout(function () { showSlides(slideIndex); }, 100);
 
 };
 
@@ -192,6 +194,7 @@ function loadCategory() {
 
             //create the inner p tag
             var categoryText = document.createElement('a');
+            categoryText.href="#";
             categoryText.innerHTML = el.title
 
             //delete icon button
@@ -201,7 +204,7 @@ function loadCategory() {
             deleteIcon.addEventListener('click', function () {
                 removeTitle(el.title, function () {
                     loadCategory();
-                    setTimeout(function () { showSlides(1); }, 100);
+                    setTimeout(function () { showSlides(slideIndex); }, 100);
                 });
             });
             categoryCell.appendChild(categoryText);
@@ -448,7 +451,8 @@ $("#submit").click(function () {
 
 $(".close").click(function () {
     loadCategory();
-    setTimeout(function () { showSlides(1); }, 100);
+    setTimeout(function () { showSlides(slideIndex); }, 100);
+    loadReadingList();
 
 })
 
@@ -457,11 +461,11 @@ $(".close").click(function () {
 
 //logic for the carousel
 $(".next").click(function () {
-    plusSlides(3);
+    plusSlides(4);
 });
 
 $(".prev").click(function () {
-    plusSlides(-3);
+    plusSlides(-4);
 })
 
 
@@ -491,7 +495,8 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
     slides[slideIndex].style.display = "block";
     slides[slideIndex + 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
+    slides[slideIndex + 2].style.display = "block";
+    dots[(slideIndex - 1)%3].className += " active";
 }
 
 
