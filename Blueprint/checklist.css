@@ -159,7 +159,7 @@ input[type=checkbox]:checked + label:before{
     
   }
 
-  .category-cell p{
+  .category-cell a{
     margin: 5px;
     border-radius: 10px;
     height: 20px;
@@ -168,6 +168,13 @@ input[type=checkbox]:checked + label:before{
     text-align: center;
   }
   
+  .category-cell .category-delete{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 2px;
+    left: 2px;
+  }
   /* Next & previous buttons */
   .prev, .next {
     cursor: pointer;
