@@ -1,18 +1,23 @@
 window.onload = function () {
     loadReadingList();
+    setTimeout(function () { showSlides(1); }, 100);
 
 };
 
-$('.search-box').on('click','.dropbtn', function (event) {
+this.loadCategory()
+
+
+
+$('.search-box').on('click', '.dropbtn', function (event) {
     //for reference
     // urls.push({url: url, title: title, image: image, done: false});
     // chrome.storage.local.set({urls: urls});
     var articleId = event.target.id;
     console.log(articleId);
-    document.getElementById("myDropdown"+String(articleId)).classList.toggle("show");
+    document.getElementById("myDropdown" + String(articleId)).classList.toggle("show");
 
-    
-    });
+
+});
 
 
 $(".section #search").click(function () {
@@ -27,7 +32,7 @@ $(".section #my-folder").click(function () {
     goCategory();
 });
 
-$('#close-icon').click(function() {
+$('#close-icon').click(function () {
     console.log('close');
     window.close();
 })
@@ -44,7 +49,7 @@ function goHome() {
     chrome.browserAction.setPopup({ popup: "home.html" });
     window.location.href = "home.html";
 }
-function goCategory(){
+function goCategory() {
     console.log('Go category page');
     chrome.browserAction.setPopup({ popup: "category.html" });
     window.location.href = "category.html";
@@ -86,24 +91,24 @@ function loadReadingList() {
             //create the drop down menu 
             // <button onclick="myFunction()" class="dropbtn">Dropdown</button>
             var dropDown = document.createElement('button');
-            dropDown.className="dropbtn";
-            dropDown.innerHTML ="drop";
+            dropDown.className = "dropbtn";
+            dropDown.innerHTML = "drop";
             dropDown.id = counter;
-            
+
 
             //create div tag to contain all the elements
             var myDropdown = document.createElement('div')
-            myDropdown.id = "myDropdown"+String(counter);
-            myDropdown.className="dropdown-content"
+            myDropdown.id = "myDropdown" + String(counter);
+            myDropdown.className = "dropdown-content"
 
             //create individual elements inside the drop down menu
             //<a href="#home">Home</a>
-            chrome.storage.local.get({ categories:[] }, function (result) {
+            chrome.storage.local.get({ categories: [] }, function (result) {
                 result.categories.forEach(function (e2) {
                     var dropItem = document.createElement('a')
                     dropItem.innerHTML = e2.title
-                    dropItem.addEventListener('click', function(){
-                        changeCategory(e2.title,el.url, function(){
+                    dropItem.addEventListener('click', function () {
+                        changeCategory(e2.title, el.url, function () {
                             loadReadingList();
                         });
                         console.log(e2.title);
@@ -113,7 +118,7 @@ function loadReadingList() {
                 })
 
             });
-            
+
             //append all the items             
             dropDown.appendChild(myDropdown)
 
@@ -152,18 +157,72 @@ function loadReadingList() {
     });
 }
 
-window.onclick = function(event) {
+
+
+
+
+
+function loadCategory() {
+    categoryContainer = document.querySelector('.category-container');
+    categoryContainer.innerHTML = '';
+    chrome.storage.local.get({ categories: [] }, function (result) {
+        result.categories.forEach(function (el) {
+
+            //create category cell
+            var categoryCell = document.createElement('div');
+            categoryCell.className = "category-cell";
+
+            //create the inner p tag
+            var categoryText = document.createElement('p');
+            categoryText.innerHTML = el.title
+
+            //delete icon button
+            var deleteIcon = document.createElement('img');
+            deleteIcon.className = "category-delete";
+            deleteIcon.src = "./img/delete.png";
+            deleteIcon.addEventListener('click', function () {
+                removeTitle(el.title, function () {
+                    loadCategory();
+                    setTimeout(function () { showSlides(1); }, 100);
+                });
+            });
+            categoryCell.appendChild(categoryText);
+            categoryCell.appendChild(deleteIcon);
+            categoryContainer.appendChild(categoryCell);
+        });
+
+    })
+
+    //create the 2 arrows 
+    // <a class="prev">&#10094;</a>
+    // <a class="next">&#10095;</a>
+    var prev = document.createElement('a')
+    prev.className = "prev";
+    prev.innerHTML = "&#10094;";
+
+    var next = document.createElement('a')
+    next.className = "next";
+    next.innerHTML = "&#10095;";
+
+    categoryContainer.appendChild(prev);
+    categoryContainer.appendChild(next);
+
+
+
+};
+
+window.onclick = function (event) {
     if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
         }
-      }
     }
-  }
+}
 
 function updateDone(url, callback) {
     chrome.storage.local.get({ urls: [] }, function (result) {
@@ -190,8 +249,20 @@ function removeUrl(url, callback) {
     });
 }
 
+//removing the item from list
+function removeTitle(title, callback) {
+    chrome.storage.local.get({ categories: [] }, function (result) {
+        var categories = result.categories.filter(function (el) {
+            return el.title !== title;
+        });
+        chrome.storage.local.set({ categories: categories });
+        chrome.extension.sendRequest({});
+        callback();
+    });
+}
+
 //updating the category of the checklist
-function changeCategory(category,url, callback){
+function changeCategory(category, url, callback) {
     chrome.storage.local.get({ urls: [] }, function (result) {
         var urls = result.urls;
         urls.forEach(function (el) {
@@ -206,13 +277,67 @@ function changeCategory(category,url, callback){
 }
 
 
-//logic for the carousel
-$(".next").click(function(){
-    plusSlides(1);
+
+//logic for the modal 
+//script to open modal
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementsByClassName("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+$(".category-box .myBtn").click(function () {
+    modal.style.display = "block";
+})
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+//getting the value in the text box
+
+$("#submit").click(function () {
+    var localStr = $("#fname").val();
+    chrome.storage.local.get({ categories: [] }, function (result) {
+        var categories = result.categories;
+        categories.push({ title: localStr });
+        chrome.storage.local.set({ categories: categories });
+        chrome.extension.sendRequest({});
+        console.log('Saving page ' + localStr);
+        alert(localStr + " created")
+    });
+
 });
 
-$(".prev").click(function(){
-    plusSlides(-1);
+$(".close").click(function () {
+    loadCategory();
+    setTimeout(function () { showSlides(1); }, 100);
+
+})
+
+
+
+
+//logic for the carousel
+$(".next").click(function () {
+    plusSlides(3);
+});
+
+$(".prev").click(function () {
+    plusSlides(-3);
 })
 
 
@@ -220,25 +345,29 @@ var slideIndex = 1;
 showSlides(slideIndex);
 
 function plusSlides(n) {
-  showSlides(slideIndex += n);
+    showSlides(slideIndex += n);
 }
 
 function currentSlide(n) {
-  showSlides(slideIndex = n);
+    showSlides(slideIndex = n);
 }
 
 function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("category-cell");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = slides.length}
+    var i;
+    var slides = document.getElementsByClassName("category-cell");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
     for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
+        slides[i].style.display = "none";
     }
     for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
+        dots[i].className = dots[i].className.replace(" active", "");
     }
-   slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
+    slides[slideIndex - 1].style.display = "block";
+    slides[slideIndex].style.display = "block";
+    slides[slideIndex+1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
 }
+
+

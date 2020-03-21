@@ -150,16 +150,17 @@ input[type=checkbox]:checked + label:before{
   .category-cell {
     display: none;
     position: relative;
-    top: 30px;
-    left: 5px;
-
+    top: 40px;
+    left: 10px;
+    float: left;
+    background-color:white;
+    border-radius: 10px;
+    margin: 5px;
+    
   }
 
-  .category-cell td{
-    background-color:white;
-    padding:5px;
-    margin: 10px;
-    float: left;
+  .category-cell p{
+    margin: 5px;
     border-radius: 10px;
     height: 20px;
     width: 70px;
@@ -186,6 +187,11 @@ input[type=checkbox]:checked + label:before{
   .next {
     position: absolute;
     right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  .prev{
+    position: absolute;
+    left: 0;
     border-radius: 3px 0 0 3px;
   }
   
@@ -226,3 +232,109 @@ input[type=checkbox]:checked + label:before{
   
   /* Add a blue color to the author */
   .author {color: cornflowerblue;}
+
+  /*all the modal stuffs */
+
+.fa-plus-square{
+  font-size: large;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+
+@-webkit-keyframes animatetop {
+  from {
+      top: -300px;
+      opacity: 0
+  }
+  to {
+      top: 0;
+      opacity: 1
+  }
+}
+
+@keyframes animatetop {
+  from {
+      top: -300px;
+      opacity: 0
+  }
+  to {
+      top: 0;
+      opacity: 1
+  }
+}
+
+/* The Close Button */
+
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {
+  padding: 2px 16px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+.modal-body #submit{
+  position: absolute;
+  right: 8;
+}
