@@ -32,6 +32,42 @@
             </a></td>
         </tr>
     </table>
+    <div class = "category-box">
+        <a class="add">
+            <i class="fas fa-folder-plus"></i>
+        </a>
+        <div class="category-container">
+            <table class="category-cell">
+                <tr >
+                    <td >apple</td>
+                    <td >pear</td>
+                    <td >orange</td>
+
+                </tr>
+            </table>
+            <table class="category-cell">
+                <tr >
+                    <td >bbb</td>
+                    <td >orange</td>
+                    <td >aaa</td>
+
+                </tr>
+            </table>
+            
+            
+            
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+          </div>
+
+          <!-- Dots/bullets/indicators -->
+        <div class="dot-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+
     <div class="search-box">
         <!-- <div class="item">
             <img id="checklist-delete" src="./img/delete.png">
@@ -45,6 +81,7 @@
             <label for="item2">item2</label>
         </div> -->
     </div>
+
 
     <!-- <script src="json/relatedNewsJson.js"></script> -->
     <script src="checklist.js"></script>
