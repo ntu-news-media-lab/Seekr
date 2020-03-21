@@ -7,3 +7,11 @@ How to install the app
 6. click on load unpacked
 7. select the blueprint folder
 8. the extension should be installed by then
+
+
+to connect to remote workstation
+WorkSpace IP
+172.16.1.93
+
+public ip
+54.255.213.124*
