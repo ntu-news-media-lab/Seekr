@@ -65,6 +65,12 @@ $('.category-box .category-container').on('click', '.category-cell a', function 
     
 });
 
+$(".show-all").click(function(){
+    loadReadingList();
+})
+
+
+
 
 // load all the list
 function loadReadingList() {

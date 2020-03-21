@@ -140,18 +140,23 @@ input[type=checkbox]:checked + label:before{
     margin: 10px;
     height: 130px;
 }
-.add{
+.myBtn{
     position: absolute;
     top: 10px;
     left: 10px;
     font-size: large;
+}
+
+.show-all{
+  position: absolute;
+  top: 10px;
+  left: 40px;
 }
   /* Slides */
   .category-cell {
     display: none;
     position: relative;
     top: 40px;
-    left: 10px;
     float: left;
     background-color:white;
     border-radius: 10px;
@@ -160,10 +165,9 @@ input[type=checkbox]:checked + label:before{
   }
 
   .category-cell a{
-    margin: 5px;
+    padding: 15px;
     border-radius: 10px;
     height: 20px;
-    width: 70px;
     font-size: large;
     text-align: center;
   }
@@ -173,7 +177,7 @@ input[type=checkbox]:checked + label:before{
     width: 10px;
     height: 10px;
     top: 2px;
-    left: 2px;
+    right: 2px;
   }
   /* Next & previous buttons */
   .prev, .next {
