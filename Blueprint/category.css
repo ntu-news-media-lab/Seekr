@@ -35,6 +35,8 @@
     background-color: #2F4F4F;
 }
 
+
+
 .category-box {
     background-color: #44D795;
     width: 310px;
@@ -45,8 +47,12 @@
     overflow: auto;
 }
 
+
 /*all the modal stuffs */
 
+.fa-plus-square{
+    font-size: 40px;
+}
 .modal {
     display: none;
     /* Hidden by default */
