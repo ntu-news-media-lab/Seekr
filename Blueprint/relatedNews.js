@@ -29,6 +29,7 @@ $('.search-box .content .column').on('click', '.tile .add', function (event) {
             console.log('You already saved this');
         }
     });
+    alert("added to reading list");
 });
 
 function connect() {
@@ -40,7 +41,7 @@ function connect() {
 
 function sendNativeMessage(message) {
     port.postMessage(message);
-    alert("sending message");
+    // alert("sending message");
 }
 
 function onDisconnected() {
@@ -55,9 +56,9 @@ function onNativeMessage(message) {
     console.log(JSON.stringify(message).substr(1, 1));
     console.log(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4));
     InputMessage = JSON.stringify(message).substr(3, JSON.stringify(message).length - 4);
-    title = InputMessage.substr(0, InputMessage.indexOf('http')-3);
+    title = InputMessage.substr(0, InputMessage.indexOf('http'));
     url = InputMessage.substr(InputMessage.indexOf('http'), InputMessage.length-1);
-    console.log(InputMessage.substr(0, InputMessage.indexOf('http')-3));
+    console.log(InputMessage.substr(0, InputMessage.indexOf('http')));
     console.log(InputMessage.substr(InputMessage.indexOf('http'), InputMessage.length-1));
 
     if (JSON.stringify(message).substr(1, 1) == "W") {
@@ -164,11 +165,18 @@ function loadStories(title, url) {
     headline.innerHTML = title;
 
     //create the add button
-    var checklistButton = document.createElement('button');
+    var checklistButton = document.createElement('a');
     checklistButton.className = "add small margin-top "+ String(articleId);
-    checklistButton.target = "_blank";
-    checklistButton.innerHTML = "+";
+    checklistButton.href="#";
     checklistButton.id = String(articleId);
+
+    //create the icon inside the checklist
+    //<i class="fas fa-plus-square"></i>
+    var checklistIcon = document.createElement('i');
+    checklistIcon.className = 'fas fa-plus-circle';
+    checklistIcon.id= String(articleId);
+    checklistButton.appendChild(checklistIcon);
+
 
     //append all to the div class
     tile.appendChild(image)

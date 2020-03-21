@@ -23,7 +23,7 @@ function connect() {
 
 function sendNativeMessage(message) {
     port.postMessage(message);
-    alert("sending message");
+    // alert("sending message");
 }
 
 function onDisconnected() {
