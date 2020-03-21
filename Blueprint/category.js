@@ -142,7 +142,7 @@ function loadList() {
 
                         //delete icon button
                         var deleteIcon = document.createElement('img');
-                        deleteIcon.id = "checklist-delete";
+                        deleteIcon.className = "checklist-delete";
                         deleteIcon.src = "./img/delete.png";
                         deleteIcon.addEventListener('click', function () {
                             removeUrl(e2.url, function () {

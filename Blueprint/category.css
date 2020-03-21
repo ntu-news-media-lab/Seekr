@@ -39,6 +39,7 @@
 
 .category-box {
     background-color: #44D795;
+    position: relative;
     width: 310px;
     padding: 10px;
     height: 410px;
@@ -51,7 +52,10 @@
 /*all the modal stuffs */
 
 .fa-plus-square{
-    font-size: 40px;
+    font-size: large;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
 }
 .modal {
     display: none;
@@ -154,6 +158,13 @@
     position: relative;
 }
 
+.categories h3{
+    font-weight: bolder;
+    font-size: large;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .categories .catContainer{
     position: relative;
 }
@@ -165,4 +176,16 @@
     height: 10px;
     top: 10px;
     right: 10px;
+}
+.catContainer .item{
+    position: relative;
+}
+
+.catContainer .checklist-delete{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    top: 5px;
+    right: 0;
+
 }
