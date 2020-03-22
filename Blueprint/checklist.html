@@ -32,7 +32,67 @@
                 </a></td>
         </tr>
     </table>
-    <div class="category-box">
+    <div class="box">
+        <h2>VIEW: </h2>
+        <div class="category-list">
+            <input type="checkbox" id="A"/>
+            <img src="./img/Arrow.png" class="arrow">
+            <label for="A">select items</label>
+            <ul class="cat-list">
+                <li>
+                    <a href="#">vovlo</a>
+                    <button>x</button>
+                </li>
+                <!-- <li><a href="#">vovlo2</a><button>x</button></li>
+                <li><a href="#">vovlo3</a><button>x</button></li> -->
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Input your category</h2>
+            </div>
+            <div class="modal-body">
+                <label for="fname">Category:</label>
+                <input type="text" id="fname" name="fname">
+                <button type="button" id="submit">submit</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="search-box">
+        <!-- <div class="item">
+            <img id="checklist-delete" src="./img/delete.png">
+            <input type="checkbox" id="item1" name="item1" value="item1">
+            <label for="item1">item1</label>
+        </div>
+
+        <div class="item">
+            <img id="checklist-delete" src="./img/delete.png">
+            <input type="checkbox" id="item2" name="item2" value="item2">
+            <label for="item2">item2</label>
+        </div> -->
+    </div>
+
+
+    <!-- <script src="json/relatedNewsJson.js"></script> -->
+    <script src="checklist.js"></script>
+</body>
+
+</html>
+
+<!-- old codes -->
+
+<!-- old slider option -->
+<!-- <div class="category-box">
         <a class="myBtn">
             <i class="fas fa-folder-plus"></i>
         </a>
@@ -56,50 +116,11 @@
             <a class="next">&#10095;</a>
         </div>
 
-        <!-- Dots/bullets/indicators -->
+
+
+        Dots/bullets/indicators
         <div class="dot-container">
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
-        </div>
-
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="close">&times;</span>
-                    <h2>Input your category</h2>
-                </div>
-                <div class="modal-body">
-                    <label for="fname">Category:</label>
-                    <input type="text" id="fname" name="fname">
-                    <button type="button" id="submit">submit</button>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-
-    <div class="search-box">
-        <!-- <div class="item">
-            <img id="checklist-delete" src="./img/delete.png">
-            <input type="checkbox" id="item1" name="item1" value="item1">
-            <label for="item1">item1</label>
-        </div>
-
-        <div class="item">
-            <img id="checklist-delete" src="./img/delete.png">
-            <input type="checkbox" id="item2" name="item2" value="item2">
-            <label for="item2">item2</label>
         </div> -->
-    </div>
-
-
-    <!-- <script src="json/relatedNewsJson.js"></script> -->
-    <script src="checklist.js"></script>
-</body>
-
-</html>

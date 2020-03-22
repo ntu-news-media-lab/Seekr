@@ -1,8 +1,8 @@
-var slideIndex =1;
+var slideIndex = 1;
 
 window.onload = function () {
     loadReadingList();
-    setTimeout(function () { showSlides(slideIndex); }, 100);
+    // setTimeout(function () { showSlides(slideIndex); }, 100);
 
 };
 
@@ -62,12 +62,12 @@ $('.category-box .category-container').on('click', '.category-cell a', function 
     //for reference
     // urls.push({url: url, title: title, image: image, done: false});
     // chrome.storage.local.set({urls: urls});
-    var category = event.target.innerHTML;  
+    var category = event.target.innerHTML;
     loadCategoryList(category);
-    
+
 });
 
-$(".show-all").click(function(){
+$(".show-all").click(function () {
     loadReadingList();
 })
 
@@ -183,53 +183,50 @@ function loadReadingList() {
 
 //load header category
 function loadCategory() {
-    categoryContainer = document.querySelector('.category-container');
+    categoryContainer = document.querySelector('.cat-list');
     categoryContainer.innerHTML = '';
+       
+    //create the add category list
+    var addCategory = document.createElement("li");
+    var addCategoryText = document.createElement("a");
+    addCategoryText.href="#";
+    addCategoryText.innerHTML="Create Category";
+    var deleteIcon = document.createElement("button")
+    deleteIcon.innerHTML="x";
+    addCategory.appendChild(addCategoryText);
+    addCategory.appendChild(deleteIcon);
+    categoryContainer.appendChild(addCategory);
+
+
+    // create individual element inside the list
     chrome.storage.local.get({ categories: [] }, function (result) {
         result.categories.forEach(function (el) {
 
-            //create category cell
-            var categoryCell = document.createElement('div');
-            categoryCell.className = "category-cell";
+            //create the list items
+            var list = document.createElement('li');
+            var listText = document.createElement("a");
+            listText.href="#";
+            listText.innerHTML=el.title;
+            var deleteIcon = document.createElement("button")
+            deleteIcon.innerHTML="x";
+            list.appendChild(listText);
+            list.appendChild(deleteIcon);
 
-            //create the inner p tag
-            var categoryText = document.createElement('a');
-            categoryText.href="#";
-            categoryText.innerHTML = el.title
-
-            //delete icon button
-            var deleteIcon = document.createElement('img');
-            deleteIcon.className = "category-delete";
-            deleteIcon.src = "./img/delete.png";
-            deleteIcon.addEventListener('click', function () {
-                removeTitle(el.title, function () {
-                    loadCategory();
-                    setTimeout(function () { showSlides(slideIndex); }, 100);
-                });
-            });
-            categoryCell.appendChild(categoryText);
-            categoryCell.appendChild(deleteIcon);
-            categoryContainer.appendChild(categoryCell);
+            //delete icon for now lets leave it as it is
+            // //delete icon button
+            // var deleteIcon = document.createElement('img');
+            // deleteIcon.className = "category-delete";
+            // deleteIcon.src = "./img/delete.png";
+            // deleteIcon.addEventListener('click', function () {
+            //     removeTitle(el.title, function () {
+            //         loadCategory();
+            //         setTimeout(function () { showSlides(slideIndex); }, 100);
+            //     });
+            // });
+            categoryContainer.appendChild(list);
         });
 
     })
-
-    //create the 2 arrows 
-    // <a class="prev">&#10094;</a>
-    // <a class="next">&#10095;</a>
-    var prev = document.createElement('a')
-    prev.className = "prev";
-    prev.innerHTML = "&#10094;";
-
-    var next = document.createElement('a')
-    next.className = "next";
-    next.innerHTML = "&#10095;";
-
-    categoryContainer.appendChild(prev);
-    categoryContainer.appendChild(next);
-
-
-
 };
 
 
@@ -403,6 +400,37 @@ function changeCategory(category, url, callback) {
     });
 }
 
+//list of value selection logic
+// $("select.category-list").change(function () {
+//     var selection = $(this).children("option:selected").val();
+//     switch(selection){
+//         case "create new category":
+//             modal.style.display = "block";
+//             break;
+
+//         case "show all":
+//             loadReadingList();
+//             break;
+//     }
+//     //TODO: add logic for individual selected elements
+//     alert("You have selected the country - " + selection);
+// });
+
+
+
+// // loading the ul realtime
+// $(".category-list label").click(function(){
+//     loadCategory();
+
+// })
+
+//getting the item from ul
+$(".category-list ul li a").click(function(){
+    var selected =   $(this).text();  
+    alert("pressed! "+selected);
+})
+
+
 
 
 //logic for the modal 
@@ -416,11 +444,6 @@ var btn = document.getElementsByClassName("myBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-$(".category-box .myBtn").click(function () {
-    modal.style.display = "block";
-})
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
@@ -459,44 +482,44 @@ $(".close").click(function () {
 
 
 
-//logic for the carousel
-$(".next").click(function () {
-    plusSlides(4);
-});
+// //logic for the carousel
+// $(".next").click(function () {
+//     plusSlides(4);
+// });
 
-$(".prev").click(function () {
-    plusSlides(-4);
-})
+// $(".prev").click(function () {
+//     plusSlides(-4);
+// })
 
 
-var slideIndex = 1;
-showSlides(slideIndex);
+// var slideIndex = 1;
+// showSlides(slideIndex);
 
-function plusSlides(n) {
-    showSlides(slideIndex += n);
-}
+// function plusSlides(n) {
+//     showSlides(slideIndex += n);
+// }
 
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
+// function currentSlide(n) {
+//     showSlides(slideIndex = n);
+// }
 
-function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("category-cell");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) { slideIndex = 1 }
-    if (n < 1) { slideIndex = slides.length }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex - 1].style.display = "block";
-    slides[slideIndex].style.display = "block";
-    slides[slideIndex + 1].style.display = "block";
-    slides[slideIndex + 2].style.display = "block";
-    dots[(slideIndex - 1)%3].className += " active";
-}
+// function showSlides(n) {
+//     var i;
+//     var slides = document.getElementsByClassName("category-cell");
+//     var dots = document.getElementsByClassName("dot");
+//     if (n > slides.length) { slideIndex = 1 }
+//     if (n < 1) { slideIndex = slides.length }
+//     for (i = 0; i < slides.length; i++) {
+//         slides[i].style.display = "none";
+//     }
+//     for (i = 0; i < dots.length; i++) {
+//         dots[i].className = dots[i].className.replace(" active", "");
+//     }
+//     slides[slideIndex - 1].style.display = "block";
+//     slides[slideIndex].style.display = "block";
+//     slides[slideIndex + 1].style.display = "block";
+//     slides[slideIndex + 2].style.display = "block";
+//     dots[(slideIndex - 1)%3].className += " active";
+// }
 
 

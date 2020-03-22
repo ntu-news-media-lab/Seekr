@@ -130,7 +130,7 @@ input[type=checkbox]:checked + label:before{
 .show {display: block;}
 
 
-/* Slideshow container */
+/* Slideshow container  + modal box*/
 
 .category-box{
     position: relative;
@@ -351,4 +351,98 @@ input[type=checkbox]:checked + label:before{
 .modal-body #submit{
   position: absolute;
   right: 8;
+}
+
+/*end of modal and category box*/
+
+/*css for category list*/
+.box{
+  position: relative;
+  width: 93%;
+  margin: 10px;
+}
+.box h2{
+  float: left;
+  margin-right: 10px;
+}
+
+/*Func hide checkbox*/
+
+.category-list ul, .category-list input[type="checkbox"] {
+  display: none;
+}
+
+.category-list input:checked ~ ul {
+  display: block;
+}
+
+
+/*Arrow*/
+
+.arrow {
+  width: 12px;
+  height: 12px;
+  vertical-align: middle;
+  float: left;
+  z-index: 0;
+  margin: 17px 1em 0 2em;
+}
+.category-list input + .arrow {
+  transform: rotate(-90deg);
+  transition: 0.1s;
+}
+.category-list input:checked + .arrow {
+  transform: rotate(0deg);
+  transition: 0.1s;
+}
+
+/*Styles*/
+.category-list label:hover {
+  cursor: pointer;
+}
+.category-list label {
+  width: 100%;
+  display: block;
+  z-index: 3;
+  position: relative;
+}
+
+.category-list ul, .category-list li, .category-list label {
+  line-height: 50px;
+  margin: 0;
+  padding: 0 2em;
+  list-style: none;
+  text-decoration: none;
+  color: #90A4AE;
+  font-weight: 100;
+  width: 100%;
+}
+
+.category-list ul {
+  float: left;
+  padding: 0 0.25em;
+  margin-left: 30px;
+}
+.category-list ul li{
+  position: relative;
+  width: 200px;
+}
+
+.category-list li a {
+  line-height: 50px;
+  margin: 0;
+  padding: 0 4em;
+  list-style: none;
+  text-decoration: none;
+  color: #90A4AE;
+  font-weight: 100;
+}
+
+.cat-list li button {
+  position: absolute;
+  right:0px;
+  margin-top: 15px;
+  border: none;
+  font-size: small;
+  background-color: white;
 }
