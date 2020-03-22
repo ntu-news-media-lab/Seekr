@@ -110,9 +110,13 @@ function loadReadingList() {
 
             //create the drop down menu 
             // <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-            var dropDown = document.createElement('button');
+            var dropDown = document.createElement('a');
             dropDown.className = "dropbtn";
-            dropDown.innerHTML = "drop";
+            dropDown.href='#';
+            dropDownImage = document.createElement('i');
+            dropDownImage.className= "fas fa-sort-down";
+            dropDownImage.id=counter;
+            dropDown.appendChild(dropDownImage);
             dropDown.id = counter;
 
 
@@ -185,17 +189,22 @@ function loadReadingList() {
 function loadCategory() {
     categoryContainer = document.querySelector('.cat-list');
     categoryContainer.innerHTML = '';
-       
+
     //create the add category list
     var addCategory = document.createElement("li");
     var addCategoryText = document.createElement("a");
-    addCategoryText.href="#";
-    addCategoryText.innerHTML="Create Category";
-    var deleteIcon = document.createElement("button")
-    deleteIcon.innerHTML="x";
+    addCategoryText.href = "#";
+    addCategoryText.innerHTML = "Create Category";
     addCategory.appendChild(addCategoryText);
-    addCategory.appendChild(deleteIcon);
     categoryContainer.appendChild(addCategory);
+
+    //create show all item
+    var showAll = document.createElement("li");
+    var showAllText = document.createElement("a");
+    showAllText.href = "#";
+    showAllText.innerHTML = "Show All";
+    showAll.appendChild(showAllText);
+    categoryContainer.appendChild(showAll);
 
 
     // create individual element inside the list
@@ -205,10 +214,10 @@ function loadCategory() {
             //create the list items
             var list = document.createElement('li');
             var listText = document.createElement("a");
-            listText.href="#";
-            listText.innerHTML=el.title;
+            listText.href = "#";
+            listText.innerHTML = el.title;
             var deleteIcon = document.createElement("button")
-            deleteIcon.innerHTML="x";
+            deleteIcon.innerHTML = "x";
             list.appendChild(listText);
             list.appendChild(deleteIcon);
 
@@ -265,9 +274,13 @@ function loadCategoryList(category) {
 
                 //create the drop down menu 
                 // <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-                var dropDown = document.createElement('button');
+                var dropDown = document.createElement('a');
                 dropDown.className = "dropbtn";
-                dropDown.innerHTML = "drop";
+                dropDown.href = "#";
+                dropDownImage = document.createElement('i');
+                dropDownImage.className= "fas fa-sort-down";
+                dropDownImage.id=counter;
+                dropDown.appendChild(dropDownImage);
                 dropDown.id = counter;
 
 
@@ -425,13 +438,37 @@ function changeCategory(category, url, callback) {
 // })
 
 //getting the item from ul
-$(".category-list ul li a").click(function(){
-    var selected =   $(this).text();  
-    alert("pressed! "+selected);
+//for reference
+// $('.category-box .category-container').on('click', '.category-cell a', function (event) {
+//     //for reference
+//     // urls.push({url: url, title: title, image: image, done: false});
+//     // chrome.storage.local.set({urls: urls});
+//     var category = event.target.innerHTML;
+//     loadCategoryList(category);
+
+// });
+
+// $(".show-all").click(function () {
+//     loadReadingList();
+// })
+//old selector function
+// $(".category-list ul li a").click(function(){
+//     var selected =   $(this).text();  
+//     alert("pressed! "+selected);
+// })
+
+$('.category-list').on('click', 'ul li a', function (event) {
+    var selection = event.target.innerHTML;
+    if (selection == "Create Category") {
+        modal.style.display = "block";
+    } else if (selection == "Show All") {
+        loadReadingList();
+    }else{
+        loadCategoryList(selection);
+    }
+    alert(selection);
+
 })
-
-
-
 
 //logic for the modal 
 //script to open modal
@@ -440,13 +477,15 @@ $(".category-list ul li a").click(function(){
 var modal = document.getElementById("myModal");
 
 // Get the button that opens the modal
-var btn = document.getElementsByClassName("myBtn");
+// var btn = document.getElementsByClassName("myBtn");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
+    loadCategory();
+    loadReadingList();
     modal.style.display = "none";
 }
 
@@ -456,6 +495,14 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
+
+
+// $(".close").click(function () {
+//     loadCategory();
+//     loadReadingList();
+
+// })
+
 
 //getting the value in the text box
 
@@ -471,15 +518,6 @@ $("#submit").click(function () {
     });
 
 });
-
-$(".close").click(function () {
-    loadCategory();
-    setTimeout(function () { showSlides(slideIndex); }, 100);
-    loadReadingList();
-
-})
-
-
 
 
 // //logic for the carousel
