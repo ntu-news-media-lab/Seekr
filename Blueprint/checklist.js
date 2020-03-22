@@ -216,22 +216,21 @@ function loadCategory() {
             var listText = document.createElement("a");
             listText.href = "#";
             listText.innerHTML = el.title;
+            // delete icon for now lets leave it as it is
+            //delete icon button
             var deleteIcon = document.createElement("button")
             deleteIcon.innerHTML = "x";
-            list.appendChild(listText);
-            list.appendChild(deleteIcon);
-
-            //delete icon for now lets leave it as it is
-            // //delete icon button
             // var deleteIcon = document.createElement('img');
             // deleteIcon.className = "category-delete";
             // deleteIcon.src = "./img/delete.png";
-            // deleteIcon.addEventListener('click', function () {
-            //     removeTitle(el.title, function () {
-            //         loadCategory();
-            //         setTimeout(function () { showSlides(slideIndex); }, 100);
-            //     });
-            // });
+            deleteIcon.addEventListener('click', function () {
+                removeTitle(el.title, function () {
+                    loadCategory();
+                    // setTimeout(function () { showSlides(slideIndex); }, 100);
+                });
+            });
+            list.appendChild(listText);
+            list.appendChild(deleteIcon)
             categoryContainer.appendChild(list);
         });
 
