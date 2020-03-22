@@ -226,6 +226,7 @@ function loadCategory() {
             deleteIcon.addEventListener('click', function () {
                 removeTitle(el.title, function () {
                     loadCategory();
+                    loadReadingList();
                     // setTimeout(function () { showSlides(slideIndex); }, 100);
                 });
             });
@@ -465,7 +466,7 @@ $('.category-list').on('click', 'ul li a', function (event) {
     }else{
         loadCategoryList(selection);
     }
-    alert(selection);
+    // alert(selection);
 
 })
 
