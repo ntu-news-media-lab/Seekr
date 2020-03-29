@@ -114,7 +114,7 @@ function loadReadingList() {
             dropDown.className = "dropbtn";
             dropDown.href='#';
             dropDownImage = document.createElement('i');
-            dropDownImage.className= "fas fa-sort-down";
+            dropDownImage.className= "far fa-plus-square";
             dropDownImage.id=counter;
             dropDown.appendChild(dropDownImage);
             dropDown.id = counter;
@@ -465,6 +465,8 @@ $('.category-list').on('click', 'ul li a', function (event) {
         loadReadingList();
     }else{
         loadCategoryList(selection);
+        topTitle = document.querySelector('.category-list label');
+        topTitle.innerHTML = selection;
     }
     // alert(selection);
 

@@ -392,6 +392,10 @@ q {
   font-weight: bold;
 }
 
+.modal-body #fname{
+  width: 140px;
+}
+
 .modal-body #submit {
   position: absolute;
   right: 8;
