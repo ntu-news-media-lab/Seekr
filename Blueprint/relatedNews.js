@@ -94,6 +94,17 @@ $(".search-btn").click(function () {
     sendNativeMessage(str);
 });
 
+document.querySelector('.search-txt').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        var str = $(".search-txt").val();
+        chrome.storage.local.set({ searchResult: str }, function () {
+            console.log('Value is set to ' + str);
+        });
+        sendNativeMessage(str);
+    }
+});
+
+
 
 $(".section #search").click(function () {
     goHome();
