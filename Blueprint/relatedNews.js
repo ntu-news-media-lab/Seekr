@@ -18,6 +18,7 @@ $('.search-box .content .column').on('click', '.tile .add', function (event) {
 
     var title = $(".column ." + String(articleId) + " .headline-small").html();
     var url = $(".column ." + String(articleId) + " .headline-small").attr("href");
+    $(".column ." + String(articleId) + " a i").attr("class", 'fas fa-check-circle');
     chrome.storage.local.get({ urls: [] }, function (result) {
         var urls = result.urls;
         if (!savedAlready(urls, title)) {
@@ -29,7 +30,7 @@ $('.search-box .content .column').on('click', '.tile .add', function (event) {
             console.log('You already saved this');
         }
     });
-    alert("added to reading list");
+    // alert("added to reading list");
 });
 
 function connect() {
