@@ -114,7 +114,7 @@ function loadReadingList() {
             dropDown.className = "dropbtn";
             dropDown.href='#';
             dropDownImage = document.createElement('i');
-            dropDownImage.className= "far fa-plus-square";
+            dropDownImage.className= "fas fa-sort-down";
             dropDownImage.id=counter;
             dropDown.appendChild(dropDownImage);
             dropDown.id = counter;
