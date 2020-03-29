@@ -13,6 +13,19 @@ $(".search-btn").click(function () {
     // alert(str);
 });
 
+document.querySelector('.search-txt').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        var str = $(".search-txt").val();
+        chrome.storage.local.set({ searchResult: str }, function () {
+            console.log('Value is set to ' + str);
+        });
+        sendNativeMessage(str);
+        // loadInvestopedia(investopedia_json, str);
+        // loadDictionary(dictionary_json, str);
+        // alert(str);
+    }
+});
+
 function connect() {
     var hostName = "com.google.chrome.example.webcrawler";
     // appendMessage("Connecting to native messaging host <b>" + hostName + "</b>")
@@ -34,15 +47,15 @@ function onDisconnected() {
 
 function onNativeMessage(message) {
     // updateInvestopedia(JSON.stringify(message));
-    console.log(JSON.stringify(message).substr(1,1));
-    console.log(JSON.stringify(message).substr(3,JSON.stringify(message).length-4));
+    console.log(JSON.stringify(message).substr(1, 1));
+    console.log(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4));
 
-    if(JSON.stringify(message).substr(1,1) =="I"){
-        updateInvestopedia(JSON.stringify(message).substr(3,JSON.stringify(message).length-4))
-    }else{
-        updateDictionary(JSON.stringify(message).substr(3,JSON.stringify(message).length-4))
+    if (JSON.stringify(message).substr(1, 1) == "I") {
+        updateInvestopedia(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4))
+    } else {
+        updateDictionary(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4))
     }
-  }
+}
 
 
 
@@ -62,7 +75,7 @@ $(".section #my-folder").click(function () {
 });
 
 
-function updateInvestopedia(message){
+function updateInvestopedia(message) {
     let defination = $(".search-txt").val();;
     let explaination = message;
     const html = `
@@ -74,10 +87,10 @@ function updateInvestopedia(message){
     
     </div>
   `;
-  $(".investopedia .defination").replaceWith(html);
+    $(".investopedia .defination").replaceWith(html);
 }
 
-function updateDictionary(message){
+function updateDictionary(message) {
     let defination = $(".search-txt").val();;
     let explaination = message;
     const html = `
@@ -141,7 +154,7 @@ function goChecklist() {
     window.location.href = "checklist.html";
 }
 
-function goCategory(){
+function goCategory() {
     console.log('Go category page');
     chrome.browserAction.setPopup({ popup: "category.html" });
     window.location.href = "category.html";
@@ -167,7 +180,7 @@ function goCategory(){
 //         <p>
 //             ${explaination}
 //         </p>
-    
+
 //     </div>
 //   `;
 //     $(".investopedia .defination").replaceWith(html);
@@ -192,7 +205,7 @@ function goCategory(){
 //         <p>
 //             ${explaination}
 //         </p>
-    
+
 //     </div>
 //   `;
 //     $(".dictionary .defination").replaceWith(html);
