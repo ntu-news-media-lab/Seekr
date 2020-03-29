@@ -157,6 +157,19 @@ function loadStories(title, url) {
     var image = document.createElement('img');
     image.src = getImageUrl();
 
+     //create the add button
+     var checklistButton = document.createElement('a');
+     checklistButton.className = "add small margin-top "+ String(articleId);
+     checklistButton.href="#";
+     checklistButton.id = String(articleId);
+ 
+     //create the icon inside the checklist
+     //<i class="fas fa-plus-square"></i>
+     var checklistIcon = document.createElement('i');
+     checklistIcon.className = 'fas fa-plus-circle';
+     checklistIcon.id= String(articleId);
+     checklistButton.appendChild(checklistIcon); 
+
     //create the headline element
     var headline = document.createElement('a');
     headline.href = url;
@@ -164,24 +177,10 @@ function loadStories(title, url) {
     headline.target = "_blank";
     headline.innerHTML = title;
 
-    //create the add button
-    var checklistButton = document.createElement('a');
-    checklistButton.className = "add small margin-top "+ String(articleId);
-    checklistButton.href="#";
-    checklistButton.id = String(articleId);
-
-    //create the icon inside the checklist
-    //<i class="fas fa-plus-square"></i>
-    var checklistIcon = document.createElement('i');
-    checklistIcon.className = 'fas fa-plus-circle';
-    checklistIcon.id= String(articleId);
-    checklistButton.appendChild(checklistIcon);
-
-
     //append all to the div class
     tile.appendChild(image)
-    tile.appendChild(headline);
     tile.appendChild(checklistButton);
+    tile.appendChild(headline);
     articleId = articleId+1
 
     //check if its even or odd

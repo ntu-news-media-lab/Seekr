@@ -190,23 +190,23 @@ function loadCategory() {
     categoryContainer = document.querySelector('.cat-list');
     categoryContainer.innerHTML = '';
 
-    //create the add category list
-    var addCategory = document.createElement("li");
-    var addCategoryText = document.createElement("a");
-    addCategoryText.href = "#";
-    addCategoryText.innerHTML = "Create Category";
-    addCategory.appendChild(addCategoryText);
-    categoryContainer.appendChild(addCategory);
-
     //create show all item
     var showAll = document.createElement("li");
     var showAllText = document.createElement("a");
     showAllText.href = "#";
-    showAllText.innerHTML = "Show All";
+    showAllText.innerHTML = "My Reading List";
     showAll.appendChild(showAllText);
     categoryContainer.appendChild(showAll);
 
+    //create the add category list
+    var addCategory = document.createElement("li");
+    var addCategoryText = document.createElement("a");
+    addCategoryText.href = "#";
+    addCategoryText.innerHTML = "New Folder...";
+    addCategory.appendChild(addCategoryText);
+    categoryContainer.appendChild(addCategory);
 
+    
     // create individual element inside the list
     chrome.storage.local.get({ categories: [] }, function (result) {
         result.categories.forEach(function (el) {
@@ -459,9 +459,9 @@ function changeCategory(category, url, callback) {
 
 $('.category-list').on('click', 'ul li a', function (event) {
     var selection = event.target.innerHTML;
-    if (selection == "Create Category") {
+    if (selection == "New Folder...") {
         modal.style.display = "block";
-    } else if (selection == "Show All") {
+    } else if (selection == "My Reading List") {
         loadReadingList();
     }else{
         loadCategoryList(selection);

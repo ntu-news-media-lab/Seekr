@@ -1,38 +1,55 @@
 .garage-logo {
   position: absolute;
   left: 20px;
-  top: 20px;
+  top: 27px;
   width: 100px;
   height: auto;
 }
 
-.section {
+.guest-icon {
+  position: absolute;
+  left: 300px;
+  top: 25px;
+  width: 40px;
+  height: auto;
+}
+
+.section{
   table-layout: fixed;
   border-collapse: collapse;
-  width: 93%;
+  width: 90%;
   margin: 10px;
   margin-top: 70px;
-}
+  float: center;
+} 
 
-.section .button {
-  background-color: black;
+.section .button{
+  background-color: #C8C8C8; 
   color: white;
-  font-size: 15px;
+  font-size: 14px;
+  font-weight: lighter;
   text-align: center;
-  line-height: 30px;
   border-radius: 8px;
+  line-height: 28px;
   float: left;
-  width: 100%;
+  width: 95%;
   height: 30px;
 }
 
-.section .button .menu_image {
-  width: 30px;
-  height: 30px;
+img {
+  position: center;
+  width: 25px;
+  height: 25px;
+  margin-top: 2px;
+}
+
+.section .button .menu_image{
+  width: 25px;
+  height: 25px;
 }
 
 #checklist {
-  background-color: #2F4F4F;
+  background-color: #828282;
 }
 
 .search-box {
@@ -54,6 +71,10 @@
   margin-top: 10px;
   border-radius: 10px;
   height: 60px;
+}
+
+.modal-body .button {
+width: 80%;
 }
 
 /* input[type=checkbox] + label{
@@ -186,6 +207,10 @@ input[type=checkbox]:checked + label:before{
   height: 10px;
   top: 2px;
   right: 2px;
+}
+
+.category-cell .category-delete:hover {
+  cursor: pointer;
 }
 
 /* Next & previous buttons */
@@ -422,6 +447,8 @@ q {
 
 .category-list label:hover {
   cursor: pointer;
+  text-decoration-color: black;
+  font-weight: bold;
 }
 
 .category-list label {
@@ -441,6 +468,7 @@ q {
   font-weight: 100;
   width: 100%;
 }
+
 
 .category-list ul {
   float: left;
@@ -473,3 +501,4 @@ q {
   font-size: small;
   background-color: white;
 }
+

@@ -1,8 +1,9 @@
 body {
-    margin: 0;
+    margin: 0px;
     width: 370px;
     height: 280px;
-    border: 10px solid lightgreen;
+    border: 5px solid #44D795;
+    background-color: transparent;
     overflow: hidden;
     user-select: none;
     -moz-user-select: none;
@@ -14,7 +15,7 @@ body {
 .garage-logo {
     position: absolute;
     left: 20px;
-    top: 20px;
+    top: 25px;
     width: 100px;
     height: auto;
 }
@@ -32,14 +33,14 @@ body {
 }
 
 .slide h1 {
-    font-size: 30px;
-    font-family: "Arial", sans-serif;
+    font-size: 20px;
+    font-family: calibri, sans-serif;
     font-weight: bold;
 }
 
 .slide h3 {
     font-size: 18px;
-    font-family: "Arial", sans-serif;
+    font-family: calibri, sans-serif;
     font-weight: bold;
 }
 
@@ -49,7 +50,8 @@ body {
     width: 270px;
     margin: 0 auto;
     /* color: #848484;  */
-    font-family: "Arial", sans-serif;
+    font-family: calibri, sans-serif;
+    font-weight: lighter;
 }
 
 .slide .column {
@@ -66,8 +68,8 @@ body {
 }
 
 img {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
 }
 
 #guide-text {
@@ -84,7 +86,7 @@ img {
 }
 
 .dots {
-    padding: 3px 3px 3px 18px;
+    padding: 3px 20px 10px 0px;
 }
 
 .dot {
@@ -108,7 +110,7 @@ img {
 }
 
 .arrow {
-    padding-right: 15px;
+    padding-right: 33px;
     text-align: right;
 }
 
