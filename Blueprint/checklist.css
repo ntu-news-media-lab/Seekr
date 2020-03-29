@@ -502,3 +502,6 @@ q {
   background-color: white;
 }
 
+.cat-list:hover {
+  font-weight: bolder;
+}
