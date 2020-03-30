@@ -114,7 +114,7 @@ function loadReadingList() {
             dropDown.className = "dropbtn";
             dropDown.href='#';
             dropDownImage = document.createElement('i');
-            dropDownImage.className= "fas fa-plus";
+            dropDownImage.className= "fas fa-folder-plus";
             dropDownImage.id=counter;
             dropDown.appendChild(dropDownImage);
             dropDown.id = counter;
@@ -278,7 +278,7 @@ function loadCategoryList(category) {
                 dropDown.className = "dropbtn";
                 dropDown.href = "#";
                 dropDownImage = document.createElement('i');
-                dropDownImage.className= "fas fa-sort-down";
+                dropDownImage.className= "fas fa-folder-plus";
                 dropDownImage.id=counter;
                 dropDown.appendChild(dropDownImage);
                 dropDown.id = counter;

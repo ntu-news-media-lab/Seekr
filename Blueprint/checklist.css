@@ -58,6 +58,7 @@ img {
   padding: 10px;
   height: 350px;
   margin: 10px;
+  margin-top: 0px;
   border-radius: 15px;
   overflow: auto;
 }
@@ -456,7 +457,7 @@ q {
 }
 
 .category-list label {
-  width: 100%;
+  width: 10%;
   display: block;
   z-index: 3;
   position: relative;
@@ -506,6 +507,11 @@ q {
   background-color: white;
 }
 
-.cat-list:hover {
-  font-weight: bolder;
+.cat-list li button:hover {
+  cursor: pointer;
+}
+
+.cat-list a:hover {
+  text-decoration-color: black;
+  font-weight: bold;
 }
