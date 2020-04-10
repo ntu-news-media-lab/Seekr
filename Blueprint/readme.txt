@@ -7,3 +7,9 @@ How to install the app
 6. click on load unpacked
 7. select the blueprint folder
 8. the extension should be installed by then
+
+
+
+note on installion:
+
+remember to install lxml i always forget
