@@ -544,3 +544,11 @@ q {
   text-decoration-color: black;
   font-weight: bold;
 }
+
+
+.search-box .item .social_btn{
+  position: absolute;
+  height: 20px;
+  bottom: 3px;
+  right: 30px;
+}

@@ -21,6 +21,17 @@ $('.search-box').on('click', '.dropbtn', function (event) {
 
 });
 
+$('.search-box').on('click', '.social_btn', function (event) {
+    //for reference
+    // urls.push({url: url, title: title, image: image, done: false});
+    // chrome.storage.local.set({urls: urls});
+    var articleId = event.target.id;
+    console.log(articleId);
+    articleId1 = articleId.toString();
+    my_html = document.getElementById("link"+articleId1).href;
+    alert(my_html);
+});
+
 
 $(".section #search").click(function () {
     goHome();
@@ -143,6 +154,17 @@ function loadReadingList() {
 
             });
 
+
+            //create a social media share icon 
+            var social = document.createElement('a');
+            social.className = "social_btn";
+            social.href='#';
+            social_icon = document.createElement('i');
+            social_icon.className= "fas fa-share-alt";
+            social_icon.id=counter;
+            social.appendChild(social_icon);
+            social.id= counter;
+
             //append all the items             
             dropDown.appendChild(myDropdown)
 
@@ -158,12 +180,14 @@ function loadReadingList() {
             var link = document.createElement('a');
             link.href = el.url;
             link.target = "_blank";
+            link.id="link"+counter;
             link.appendChild(label);
 
             item.appendChild(deleteIcon);
             item.appendChild(checkBox);
             item.appendChild(dropDown)
             item.appendChild(link);
+            item.appendChild(social);
 
 
             readingList.appendChild(item);
@@ -473,6 +497,10 @@ $('.category-list').on('click', 'ul li a', function (event) {
     // alert(selection);
 
 })
+
+
+//logic for social media modal
+var social_modal = document.getElementById("social_modal");
 
 //logic for the modal 
 //script to open modal
