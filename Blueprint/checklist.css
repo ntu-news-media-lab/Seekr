@@ -325,7 +325,7 @@ q {
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
-  z-index: 1;
+  z-index: 4;
   /* Sit on top */
   padding-top: 100px;
   /* Location of the box */
@@ -352,6 +352,7 @@ q {
   padding: 0;
   border: 1px solid #888;
   width: 80%;
+  height: 130px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -390,6 +391,67 @@ q {
   float: right;
   font-size: 40px;
   font-weight: bold;
+}
+
+#social_close{
+  color: black;
+  font-weight: normal ;
+  font-size: 35px;
+}
+
+.modal-content ul{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.modal-content ul li{
+  list-style: none;
+  margin: 0 10px;
+}
+
+.modal-content ul li .fab {
+  color: #000000;
+  font-size: 25px;
+  line-height: 50px;
+  transition: .5s;
+}
+.modal-content ul li .fab:hover {
+  color: #ffffff;
+}
+.modal-content ul li a {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  text-align: center;
+  transition: 0.5s;
+  transform: translate(0,0px);
+  box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.5);
+}
+.modal-content ul li a:hover {
+  transform: rotate(0deg) skew(0deg) translate(0, -10px);
+}
+.modal-content ul li:nth-child(1) a:hover {
+  background-color: #3b5999;
+}
+.modal-content ul li:nth-child(2) a:hover {
+  background-color: #55acee;
+}
+.modal-content ul li:nth-child(3) a:hover {
+  background-color: #e4405f;
+}
+.modal-content ul li:nth-child(4) a:hover {
+  background-color: #cd201f;
+}
+.modal-content ul li:nth-child(5) a:hover {
+  background-color: #0077B5;
 }
 
 .close:hover, .close:focus {
@@ -543,4 +605,12 @@ q {
 .cat-list a:hover {
   text-decoration-color: black;
   font-weight: bold;
+}
+
+
+.search-box .item .social_btn{
+  position: absolute;
+  height: 20px;
+  bottom: 3px;
+  right: 30px;
 }

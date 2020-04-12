@@ -1,4 +1,5 @@
 var slideIndex = 1;
+var shareLink = "";
 
 window.onload = function () {
     loadReadingList();
@@ -20,6 +21,44 @@ $('.search-box').on('click', '.dropbtn', function (event) {
 
 
 });
+
+$('.search-box').on('click', '.social_btn', function (event) {
+    //for reference
+    // urls.push({url: url, title: title, image: image, done: false});
+    // chrome.storage.local.set({urls: urls});
+    var articleId = event.target.id;
+    console.log(articleId);
+    articleId1 = articleId.toString();
+    my_html = document.getElementById("link" + articleId1).href;
+    shareLink = my_html;
+    socialModal.style.display = "block";
+
+});
+
+$("#socialModal ul li:nth-child(1)").click(function () {
+    window.open("https://www.facebook.com/sharer/sharer.php?u=" + shareLink);
+});
+
+$("#socialModal ul li:nth-child(2)").click(function () {
+    window.open("http://twitter.com/share?text=" + shareLink);
+});
+
+$("#socialModal ul li:nth-child(3)").click(function () {
+    alert(shareLink);
+});
+
+$("#socialModal ul li:nth-child(4)").click(function () {
+    window.open("https://www.linkedin.com/sharing/share-offsite/?url=" + shareLink);
+});
+
+
+var socialModal = document.getElementById("socialModal")
+var span1 = document.getElementsByClassName("close")[1];
+
+// When the user clicks on <span> (x), close the modal
+span1.onclick = function () {
+    socialModal.style.display = "none";
+}
 
 
 $(".section #search").click(function () {
@@ -112,10 +151,10 @@ function loadReadingList() {
             // <button onclick="myFunction()" class="dropbtn">Dropdown</button>
             var dropDown = document.createElement('a');
             dropDown.className = "dropbtn";
-            dropDown.href='#';
+            dropDown.href = '#';
             dropDownImage = document.createElement('i');
-            dropDownImage.className= "fas fa-folder-plus";
-            dropDownImage.id=counter;
+            dropDownImage.className = "fas fa-folder-plus";
+            dropDownImage.id = counter;
             dropDown.appendChild(dropDownImage);
             dropDown.id = counter;
 
@@ -143,6 +182,17 @@ function loadReadingList() {
 
             });
 
+
+            //create a social media share icon 
+            var social = document.createElement('a');
+            social.className = "social_btn";
+            social.href = '#';
+            social_icon = document.createElement('i');
+            social_icon.className = "fas fa-share-alt";
+            social_icon.id = counter;
+            social.appendChild(social_icon);
+            social.id = counter;
+
             //append all the items             
             dropDown.appendChild(myDropdown)
 
@@ -158,12 +208,14 @@ function loadReadingList() {
             var link = document.createElement('a');
             link.href = el.url;
             link.target = "_blank";
+            link.id = "link" + counter;
             link.appendChild(label);
 
             item.appendChild(deleteIcon);
             item.appendChild(checkBox);
             item.appendChild(dropDown)
             item.appendChild(link);
+            item.appendChild(social);
 
 
             readingList.appendChild(item);
@@ -206,7 +258,7 @@ function loadCategory() {
     addCategory.appendChild(addCategoryText);
     categoryContainer.appendChild(addCategory);
 
-    
+
     // create individual element inside the list
     chrome.storage.local.get({ categories: [] }, function (result) {
         result.categories.forEach(function (el) {
@@ -278,8 +330,8 @@ function loadCategoryList(category) {
                 dropDown.className = "dropbtn";
                 dropDown.href = "#";
                 dropDownImage = document.createElement('i');
-                dropDownImage.className= "fas fa-folder-plus";
-                dropDownImage.id=counter;
+                dropDownImage.className = "fas fa-folder-plus";
+                dropDownImage.id = counter;
                 dropDown.appendChild(dropDownImage);
                 dropDown.id = counter;
 
@@ -315,6 +367,18 @@ function loadCategoryList(category) {
                 //     document.getElementById("myDropdown"+String(counter)).classList.toggle("show");
                 // });
 
+
+                //create a social media share icon 
+                var social = document.createElement('a');
+                social.className = "social_btn";
+                social.href = '#';
+                social_icon = document.createElement('i');
+                social_icon.className = "fas fa-share-alt";
+                social_icon.id = counter;
+                social.appendChild(social_icon);
+                social.id = counter;
+
+
                 //create the checklist title
                 var label = document.createElement('label');
                 label.innerHTML = el.title;
@@ -322,12 +386,14 @@ function loadCategoryList(category) {
                 var link = document.createElement('a');
                 link.href = el.url;
                 link.target = "_blank";
+                link.id = "link" + counter;
                 link.appendChild(label);
 
                 item.appendChild(deleteIcon);
                 item.appendChild(checkBox);
                 item.appendChild(dropDown)
                 item.appendChild(link);
+                item.appendChild(social);
 
 
                 readingList.appendChild(item);
@@ -463,9 +529,9 @@ $('.category-list').on('click', 'ul li a', function (event) {
         modal.style.display = "block";
     } else if (selection == "My Reading List") {
         loadReadingList();
-        document.getElementsByTagName("label")[0].innerHTML="My Reading List";
+        document.getElementsByTagName("label")[0].innerHTML = "My Reading List";
 
-    }else{
+    } else {
         loadCategoryList(selection);
         topTitle = document.querySelector('.category-list label');
         topTitle.innerHTML = selection;
@@ -473,6 +539,10 @@ $('.category-list').on('click', 'ul li a', function (event) {
     // alert(selection);
 
 })
+
+
+//logic for social media modal
+var social_modal = document.getElementById("social_modal");
 
 //logic for the modal 
 //script to open modal
@@ -499,6 +569,7 @@ window.onclick = function (event) {
         loadCategory();
         loadReadingList();
         modal.style.display = "none";
+        socialModal.style.display = "none";
     }
 }
 
