@@ -463,6 +463,8 @@ $('.category-list').on('click', 'ul li a', function (event) {
         modal.style.display = "block";
     } else if (selection == "My Reading List") {
         loadReadingList();
+        document.getElementsByTagName("label")[0].innerHTML="My Reading List";
+
     }else{
         loadCategoryList(selection);
         topTitle = document.querySelector('.category-list label');

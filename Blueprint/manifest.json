@@ -1,12 +1,12 @@
 {
     "manifest_version": 2,
-    "name": "Blueprint",
-    "description": "The blueprint finder",
+    "name": "SEEKR",
+    "description": "The SEEKR",
     "version": "1",
     "author": "Goh Yong Wei",
     "browser_action": {
       "default_icon": "./img/icon_search.png",
-      "default_title": "Blueprint",
+      "default_title": "SEEKR",
       "default_popup": "onboarding.html"
     },
     "content_security_policy": "script-src 'self' https://ajax.googleapis.com https://kit.fontawesome.com; object-src 'self'",    
