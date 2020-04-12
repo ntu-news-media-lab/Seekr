@@ -58,15 +58,18 @@ function onNativeMessage(message) {
     console.log(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4));
     InputMessage = JSON.stringify(message).substr(3, JSON.stringify(message).length - 4);
     title = InputMessage.substr(0, InputMessage.indexOf('http'));
-    url = InputMessage.substr(InputMessage.indexOf('http'), InputMessage.length-1);
-    console.log(InputMessage.substr(0, InputMessage.indexOf('http')));
-    console.log(InputMessage.substr(InputMessage.indexOf('http'), InputMessage.length-1));
+    // url = InputMessage.substr(InputMessage.indexOf('http'), InputMessage.length-1);
+    url = InputMessage.substring(InputMessage.indexOf('http'), InputMessage.indexOf('|'));
+    date = InputMessage.substring(InputMessage.indexOf('|')+1);
+    console.log(title);
+    console.log(url);
+    console.log(date);
 
     if (JSON.stringify(message).substr(1, 1) == "W") {
         wipePage();
     }
     else {
-        loadStories(title, url)
+        loadStories(title, url, date)
     }
 }
 
@@ -157,7 +160,7 @@ function getImageUrl(){
     return ran_key = images_json[Math.floor(Math.random() *images_json.length)].url;
 }
 
-function loadStories(title, url) {
+function loadStories(title, url, date) {
     var leftReadingList = document.querySelector('.content .left');
     var rightReadingList = document.querySelector('.content .right');
 
@@ -189,10 +192,19 @@ function loadStories(title, url) {
     headline.target = "_blank";
     headline.innerHTML = title;
 
+    //create the date element
+    var articleDate = document.createElement("time")
+    articleDate.innerHTML = date;
+
+    //div tag to put in the date
+    var articleDateDiv = document.createElement("div");
+    articleDateDiv.appendChild(articleDate);
+
     //append all to the div class
     tile.appendChild(image)
     tile.appendChild(checklistButton);
     tile.appendChild(headline);
+    tile.appendChild(articleDateDiv);
     articleId = articleId+1
 
     //check if its even or odd
