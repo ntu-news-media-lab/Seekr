@@ -42,11 +42,30 @@
     height: 25px;
     margin-top: 2px;
   }
+
+  .section .button .img-top {
+    display: none;
+    position: center;
+}
+.section .button:hover .img-top {
+    display: inline;
+}
+
+.section .button:hover img {
+    display: none;
+}
   
   .section .button .menu_image{
     width: 25px;
     height: 25px;
   }  
+
+  .img-top {
+    text-align: center; 
+    font-family: calibri, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
 
 #my-folder {
     background-color: #828282;
@@ -206,3 +225,4 @@
     right: 0;
 
 }
+
