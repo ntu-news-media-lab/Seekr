@@ -13,3 +13,23 @@ How to install the app
 note on installion:
 
 remember to install lxml i always forget
+
+
+.button .tooltiptext {
+    visibility: hidden;
+    width: 60px;
+    height: 20px;
+    background-color: #F2F3F4;
+    color: black;
+    text-align: center;
+    /* border-radius: 6px; */
+    padding-bottom: 5px;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+
+  .button:hover .tooltiptext {
+    visibility: visible;
+  }

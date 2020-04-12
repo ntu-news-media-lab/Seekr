@@ -54,25 +54,23 @@ img {
     height: 25px;
     margin-top: 2px;
 }
+.section .button{
+    position: relative;
+    display: inline-block;
+}
 
-.button .tooltiptext {
-    visibility: hidden;
-    width: 60px;
-    height: 20px;
-    background-color: #F2F3F4;
-    color: black;
-    text-align: center;
-    /* border-radius: 6px; */
-    padding-bottom: 5px;
-  
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-  }
+.section .button .img-top {
+    display: none;
+    position: center;
+}
+.section .button:hover .img-top {
+    display: inline;
+}
 
-  .button:hover .tooltiptext {
-    visibility: visible;
-  }
+.section .button:hover img {
+    display: none;
+}
+
 
 
 
