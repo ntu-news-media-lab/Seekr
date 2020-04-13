@@ -1,8 +1,8 @@
 .garage-logo {
   position: absolute;
-  left: 20px;
-  top: 27px;
-  width: 100px;
+  left: 30px;
+  top: 30px;
+  width: 200px;
   height: auto;
 }
 
@@ -397,11 +397,12 @@ q {
   color: black;
   font-weight: normal ;
   font-size: 35px;
+  margin-right: 10px;
 }
 
 .modal-content ul{
     position: absolute;
-    top: 50%;
+    top: 57%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 0;
@@ -613,4 +614,15 @@ q {
   height: 20px;
   bottom: 3px;
   right: 30px;
+}
+
+.modal-content p{
+  display: block;
+  position: center;
+  margin-left: 130px;
+  font-family: calibri, sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  font-weight: bolder;
+
 }
