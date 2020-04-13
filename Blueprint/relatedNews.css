@@ -1,7 +1,7 @@
 .garage-logo {
   position: absolute;
-  left: 30px;
-  top: 30px;
+  left: 20px;
+  top: 15px;
   width: 200px;
   height: auto;
 }
@@ -19,7 +19,7 @@
   border-collapse: collapse;
   width: 90%;
   margin: 10px;
-  margin-top: 70px;
+  margin-top: 80px;
   float: center;
 } 
 
@@ -83,7 +83,7 @@ img {
   width: 315px;
   padding: 10px;
   padding-top: 10px;
-  height: 410px;
+  height: 380px;
   margin: 10px;
   border-radius: 15px;
 }
@@ -103,7 +103,7 @@ img {
 .search-box .search-btn{
   position: absolute;
   left:300px;
-  top: 140px;
+  top: 158px;
 
 }
 
@@ -114,7 +114,7 @@ img {
   width: 100%;
   margin-top: 15px;
   border-radius: 10px;
-  height: 330px;
+  height: 300px;
   overflow: auto;
 }
 

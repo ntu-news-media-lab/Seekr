@@ -10,8 +10,8 @@
 
   .garage-logo {
     position: absolute;
-    left: 30px;
-    top: 30px;
+    left: 20px;
+    top: 15px;
     width: 200px;
     height: auto;
 }
@@ -127,7 +127,7 @@ img {
 .search-box .search-btn{
     position: absolute;
     left:292px;
-    top: 194px;
+    top: 202px;
 
 }
 

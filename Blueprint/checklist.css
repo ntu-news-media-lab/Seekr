@@ -1,7 +1,7 @@
 .garage-logo {
   position: absolute;
-  left: 30px;
-  top: 30px;
+  left: 20px;
+  top: 15px;
   width: 200px;
   height: auto;
 }
@@ -19,7 +19,7 @@
   border-collapse: collapse;
   width: 90%;
   margin: 10px;
-  margin-top: 70px;
+  margin-top: 80px;
   float: center;
 } 
 
@@ -73,6 +73,7 @@ img {
 
 .search-box {
   background-color: #44D795;
+  box-shadow: 1px 1px 2px 2px lightgrey;
   width: 310px;
   padding: 10px;
   height: 350px;
