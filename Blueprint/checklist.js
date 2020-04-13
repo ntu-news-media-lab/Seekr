@@ -279,6 +279,7 @@ function loadCategory() {
                 removeTitle(el.title, function () {
                     loadCategory();
                     loadReadingList();
+                    document.getElementsByTagName("label")[0].innerHTML = "My Reading List";
                     // setTimeout(function () { showSlides(slideIndex); }, 100);
                 });
             });
@@ -309,7 +310,7 @@ function loadCategoryList(category) {
                 deleteIcon.src = "./img/delete.png";
                 deleteIcon.addEventListener('click', function () {
                     removeUrl(el.url, function () {
-                        loadReadingList();
+                        loadCategoryList(category);
                     });
                 });
 
@@ -320,7 +321,7 @@ function loadCategoryList(category) {
                 }
                 checkBox.addEventListener('click', function () {
                     updateDone(el.url, function () {
-                        loadReadingList();
+                        loadCategoryList(category);
                     });
                 });
 
@@ -349,7 +350,7 @@ function loadCategoryList(category) {
                         dropItem.innerHTML = e2.title
                         dropItem.addEventListener('click', function () {
                             changeCategory(e2.title, el.url, function () {
-                                loadReadingList();
+                                loadCategoryList(category);
                             });
                             console.log(e2.title);
                         });
