@@ -59,7 +59,7 @@ The extension runs on a backend python script.  Below is the instruction for ins
 6. Save and exit the file.  Look for another file call webCrawler in the host folder and repeat the steps above.
 7. Finally in the  host folder, double click on the install_host to install the batch file.
 
-##Advice for Mac user
+## Advice for Mac user
 There is no installation script for mac user as of now.  However, for future developers working on this extension, you can refer to the sh script “install_host_MacReference”.  I  added in the host folder for reference on creating a script to run on Mac devices.
 
 
