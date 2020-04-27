@@ -31,7 +31,7 @@ Seekr aims to:
 
 # 3. Setup
 
-## Adding the extension to chrome toolbar 
+## 3.1 Adding the extension to chrome toolbar 
 1. Download and unzip this code repository
 2. In Google Chrome, open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link(chrome://extensions/))
 3. Enable 'Developer mode' in the top right hand corner
@@ -39,7 +39,7 @@ Seekr aims to:
 5. Select the code repository folder, in this case it will be the folder Seekr
 6. You should see a magnifying glass extension' as a chrome extension
 
-## Installing Python and the required libraries for Windows user
+## 3.2 Installing Python and the required libraries for Windows user
 The extension runs on a backend python script.  Below is the instruction for installing python and the required libraries to run the script.
 1. Visit https://www.python.org/ and download the latest python version.
 2. During installation, select the Add Python To Path checkbox.  Continue with the rest of the installation.
@@ -51,7 +51,7 @@ The extension runs on a backend python script.  Below is the instruction for ins
     * pip install structures
     * pip install lxml
 
-## Some last tweaking to make the extension work
+## 3.3 Some last tweaking to make the extension work
 1.  open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link(chrome://extensions/))
 2. Look for the seekr extension.  In the seekr extension box there is a field call  ID.  Copy the ID.
 3. Navigate to the Seekr folder then open up  the host folder.
@@ -60,7 +60,7 @@ The extension runs on a backend python script.  Below is the instruction for ins
 6. Save and exit the file.  Look for another file call webCrawler in the host folder and repeat the steps above.
 7. Finally in the  host folder, double click on the install_host to install the batch file.
 
-## Advice for Mac user
+## 3.4 Advice for Mac user
 There is no installation script for mac user as of now.  However, for future developers working on this extension, you can refer to the sh script “install_host_MacReference”.  I  added in the host folder for reference on creating a script to run on Mac devices.
 
 
