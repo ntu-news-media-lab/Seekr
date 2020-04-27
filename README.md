@@ -3,7 +3,7 @@
 ![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)
 
 Seekr is a Google Chrome extension that allows users to better connect with startup news by improving their understanding of business terms, expanding their knowledge of business topics by accessing the latest related articles, and organising the information however they need it.
-<img src="./GithubPhotos/collage.jpg"
+<img src="./GithubPhotos/Collage3.jpg"
      alt="Markdown Seekr icon"
      style="float: left; margin-right: 10px;" />
 
@@ -33,7 +33,7 @@ Seekr aims to:
 
 ## 3.1 Adding the extension to chrome toolbar 
 1. Download and unzip this code repository
-2. In Google Chrome, open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link(chrome://extensions/))
+2. In Google Chrome, open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link [](chrome://extensions/))
 3. Enable 'Developer mode' in the top right hand corner
 4. Click on 'Load unpacked'
 5. Select the code repository folder, in this case it will be the folder Seekr
@@ -52,7 +52,7 @@ The extension runs on a backend python script.  Below is the instruction for ins
     * pip install lxml
 
 ## 3.3 Some last tweaking to make the extension work
-1.  open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link(chrome://extensions/))
+1.  Open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link [](chrome://extensions/))
 2. Look for the seekr extension.  In the seekr extension box there is a field call  ID.  Copy the ID.
 3. Navigate to the Seekr folder then open up  the host folder.
 4. Inside this folder there is a file call newsCrawler.  Open newsCrawler file using notepad by right clicking it and selecting open with NotePad.
@@ -112,6 +112,6 @@ Users from our research process, for providing us with insightful comments and f
 
 # 7. Team
 
-Journalists: Yeo Sze-G and Sherlyn Seah
-Designers: Esther Rim and Namita Kumar
+Journalists: Yeo Sze-G and Sherlyn Seah</br>
+Designers: Esther Rim and Namita Kumar</br>
 Developer: Goh Yong Wei
