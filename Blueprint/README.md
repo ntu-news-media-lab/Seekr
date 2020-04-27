@@ -4,8 +4,9 @@
 
 Seekr is a Google Chrome extension that allows users to better connect with startup news by improving their understanding of business terms, expanding their knowledge of business topics by accessing the latest related articles, and organising the information however they need it.
 
-![Screenshots](./GithubPhoto/collage?raw=true "Screenshots")
-
+<img src="./GithubPhoto/collage.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
 
 # Table of contents:
 
