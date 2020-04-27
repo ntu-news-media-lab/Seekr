@@ -6,7 +6,7 @@ Seekr is a Google Chrome extension that allows users to better connect with star
 <img src="./GithubPhotos/collage.jpg"
      alt="Markdown Seekr icon"
      style="float: left; margin-right: 10px;" />
----
+
 # Table of contents:
 
 1. [Introduction](#introduction)
@@ -16,7 +16,6 @@ Seekr is a Google Chrome extension that allows users to better connect with star
 5. [Future Iterations](#future-optimisations)
 6. [Acknowledgements](#acknowledgements)
 7. [Team](#team)
----
 
 # 1. Introduction
 
@@ -24,13 +23,11 @@ Seekr aims to:
 1. Pique curiousity – it serves as a go-to tool to help tertiary students easily search and understand business jargon.
 2. Broaden perspectives – it is the key ingredient for tertiary students to better access and connect with topics in the start-up ecosystem.
 3. Manage information – it helps tertiary students get organised with new knowledge.
----
 
 # 2. Requirements
 
 * python 3
 * chrome
----
 
 # 3. Setup
 
@@ -66,9 +63,6 @@ The extension runs on a backend python script.  Below is the instruction for ins
 ## 3.4 Advice for Mac user
 There is no installation script for mac user as of now.  However, for future developers working on this extension, you can refer to the sh script “install_host_MacReference”.  I  added in the host folder for reference on creating a script to run on Mac devices.
 
----
-
-
 # 4. Usage
 
 ### Demo
@@ -96,7 +90,6 @@ Users can create folders and organize articles for future reading.
 #### • Sharing
 Users can share articles on social media and messaging platforms.
 
----
 
 # 5. Future Iterations
 
@@ -106,7 +99,6 @@ We hope to improve the product through further iterations:
 * Enable push notifications to flag unread stories for users.
 * Introduce user accounts/guest modes to make news-reading more social.
 
----
 
 # 6. Acknowledgements
 
@@ -117,8 +109,6 @@ Our news partner Olivia Poh from Garage @ The Business Times for her continuous 
 Our industry mentor Janie Octia from CrowdTangle @ Facebook for her expert guidance. 
 
 Users from our research process, for providing us with insightful comments and feedback.
-
----
 
 # 7. Team
 
