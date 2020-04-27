@@ -9,13 +9,13 @@ Seekr is a Google Chrome extension that allows users to better connect with star
 
 # Table of contents:
 
-1. [Introduction](#introduction)
-2. [Requirements](#requirements)
-3. [Setup](#setup)
-4. [Usage](#usage)
-5. [Future Iterations](#future-optimisations)
-6. [Acknowledgements](#acknowledgements)
-7. [Team](#team)
+1. Introduction
+2. Requirements
+3. Setup
+4. Usage
+5. Future Iterations
+6. Acknowledgements
+7. Team
 
 # 1. Introduction
 
@@ -32,12 +32,12 @@ Seekr aims to:
 # 3. Setup
 
 ## 3.1 Adding the extension to chrome toolbar 
-1. Download and unzip this code repository
-2. In Google Chrome, open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link: chrome://extensions/ )
-3. Enable 'Developer mode' in the top right hand corner
-4. Click on 'Load unpacked'
-5. Select the code repository folder, in this case it will be the folder Seekr
-6. You should see a magnifying glass extension' as a chrome extension
+1. Download and unzip this code repository.
+2. In Google Chrome, open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link: chrome://extensions/ ).
+3. Enable 'Developer mode' in the top right hand corner.
+4. Click on 'Load unpacked'.
+5. Select the code repository folder, in this case it will be the folder Seekr.
+6. You should see a magnifying glass extension' as a chrome extension.
 
 ## 3.2 Installing Python and the required libraries for Windows user
 The extension runs on a backend python script.  Below is the instruction for installing python and the required libraries to run the script.
@@ -67,7 +67,7 @@ There is no installation script for mac user as of now.  However, for future dev
 
 ### Demo
 
-Watch a demo of Seekr<br/>   
+Watch a demo of Seekr. <br/>   
 [!["Seekr demo"](https://img.youtube.com/vi/u7JZ4ZrKnlw/0.jpg)](https://www.youtube.com/watch?v=u7JZ4ZrKnlw&feature=youtu.be)
 
 ### Key Features
@@ -111,7 +111,7 @@ Our industry mentor Janie Octia from CrowdTangle @ Facebook for her expert guida
 Users from our research process, for providing us with insightful comments and feedback.
 
 # 7. Team
-
-Journalists: Yeo Sze-G and Sherlyn Seah</br>
+Boss: Yeo Sze-G</br>
+Journalists: Sherlyn Seah</br>
 Designers: Esther Rim and Namita Kumar</br>
 Developer: Goh Yong Wei
