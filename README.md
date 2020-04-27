@@ -52,7 +52,7 @@ The extension runs on a backend python script.  Below is the instruction for ins
     * pip install lxml
 
 ## 3.3 Some last tweaking to make the extension work
-1.  Open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link <chrome://extensions/>
+1.  Open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link [chrome extension page](chrome://extensions/)
 2. Look for the seekr extension.  In the seekr extension box there is a field call  ID.  Copy the ID.
 3. Navigate to the Seekr folder then open up  the host folder.
 4. Inside this folder there is a file call newsCrawler.  Open newsCrawler file using notepad by right clicking it and selecting open with NotePad.
