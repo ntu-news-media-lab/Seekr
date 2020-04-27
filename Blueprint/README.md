@@ -3,7 +3,7 @@
 ![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)
 
 Seekr is a Google Chrome extension that allows users to better connect with startup news by improving their understanding of business terms, expanding their knowledge of business topics by accessing the latest related articles, and organising the information however they need it.
-<img src="./GithubPhotos/Welcome.jpg"
+<img src="./GithubPhotos/Welcome.png"
      alt="Markdown Seekr icon"
      style="float: left; margin-right: 10px;" />
 <img src="./GithubPhotos/collage.jpg"
