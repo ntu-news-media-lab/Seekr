@@ -1,9 +1,9 @@
 {
     "name": "com.google.chrome.example.newscrawler",
     "description": "NewsCrawler api host",
-    "path": "newsCrawler.bat",
+    "path": "newsCrawlerBat.bat",
     "type": "stdio",
     "allowed_origins": [
-      "chrome-extension://ehkdnjoddinfggaiebpgmeglmnkhigbp/"
+      "chrome-extension://hmdbmlkpepdgnbohmnbbpfbkaaliobkg/"
     ]
   }
