@@ -68,7 +68,7 @@ There is no installation script for mac user as of now.  However, for future dev
 
 ### Demo
 
-Watch a demo of Seekr [here](https://www.youtube.com/watch?v=u7JZ4ZrKnlw&feature=youtu.be).
+Watch a demo of Seekr [!["Seekr demo"](https://img.youtube.com/vi/u7JZ4ZrKnlw/0.jpg)](https://www.youtube.com/watch?v=u7JZ4ZrKnlw&feature=youtu.be)
 
 ### Key Features
 
