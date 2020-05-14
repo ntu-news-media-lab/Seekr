@@ -111,7 +111,6 @@ Our industry mentor Janie Octia from CrowdTangle @ Facebook for her expert guida
 Users from our research process, for providing us with insightful comments and feedback.
 
 # 7. Team
-Boss: Yeo Sze-G</br>
-Journalists: Sherlyn Seah</br>
+Journalists: Yeo Sze-G and Sherlyn Seah</br>
 Designers: Esther Rim and Namita Kumar</br>
 Developer: Goh Yong Wei
