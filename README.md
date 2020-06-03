@@ -36,7 +36,7 @@ Seekr aims to:
 2. In Google Chrome, open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link: chrome://extensions/ ).
 3. Enable 'Developer mode' in the top right hand corner.
 4. Click on 'Load unpacked'.
-5. Select the code repository folder, in this case it will be the folder Seekr.
+5. Open up the seekr folder that you just downloaded.
 6. You should see a magnifying glass extension' as a chrome extension.
 7. Enjoy using the extension
 
