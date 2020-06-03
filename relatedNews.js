@@ -1,5 +1,4 @@
-connect();
-
+var xhr = new XMLHttpRequest();
 let contentLeft = true;
 var articleId = 0;
 
@@ -7,8 +6,23 @@ chrome.storage.local.get(['searchResult'], function (result) {
     console.log('Value currently is ' + result.searchResult);
     searchResult = result.searchResult;
     $(".search-box .search-txt").val(searchResult);
-    sendNativeMessage(searchResult);
-    // loadStories(relatedNews_json, searchResult);
+    var searchUrl = "https://chrome-backend.herokuapp.com/news/" + searchResult
+    xhr.open("GET", searchUrl, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            // JSON.parse does not evaluate the attacker's scripts.
+            wipePage();
+            var result = JSON.parse(xhr.responseText);
+            for (i in result.articles) {
+                var title = result.articles[i].title;
+                var url = result.articles[i].url;
+                var time = result.articles[i].time;
+                loadStories(title, url, time);
+            }
+
+        }
+    };
+    xhr.send();
 });
 $('.search-box .content .column').on('click', '.tile .add', function (event) {
     //for reference
@@ -33,45 +47,7 @@ $('.search-box .content .column').on('click', '.tile .add', function (event) {
     // alert("added to reading list");
 });
 
-function connect() {
-    var hostName = "com.google.chrome.example.newscrawler";
-    port = chrome.runtime.connectNative(hostName);
-    port.onMessage.addListener(onNativeMessage);
-    port.onDisconnect.addListener(onDisconnected);
-}
 
-function sendNativeMessage(message) {
-    port.postMessage(message);
-    // alert("sending message");
-}
-
-function onDisconnected() {
-    // appendMessage("Failed to connect: " + chrome.runtime.lastError.message);
-    alert("failed to connect")
-    port = null;
-}
-
-
-function onNativeMessage(message) {
-    // updateInvestopedia(JSON.stringify(message));
-    console.log(JSON.stringify(message).substr(1, 1));
-    console.log(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4));
-    InputMessage = JSON.stringify(message).substr(3, JSON.stringify(message).length - 4);
-    title = InputMessage.substr(0, InputMessage.indexOf('http'));
-    // url = InputMessage.substr(InputMessage.indexOf('http'), InputMessage.length-1);
-    url = InputMessage.substring(InputMessage.indexOf('http'), InputMessage.indexOf('|'));
-    date = InputMessage.substring(InputMessage.indexOf('|')+1);
-    console.log(title);
-    console.log(url);
-    console.log(date);
-
-    if (JSON.stringify(message).substr(1, 1) == "W") {
-        wipePage();
-    }
-    else {
-        loadStories(title, url, date)
-    }
-}
 
 function wipePage() {
     $(".content .left").empty();
@@ -95,7 +71,23 @@ $(".search-btn").click(function () {
     chrome.storage.local.set({ searchResult: str }, function () {
         console.log('Value is set to ' + str);
     });
-    sendNativeMessage(str);
+    var searchUrl = "https://chrome-backend.herokuapp.com/news/" + str
+    xhr.open("GET", searchUrl, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            // JSON.parse does not evaluate the attacker's scripts.
+            wipePage();
+            var result = JSON.parse(xhr.responseText);
+            for (i in result.articles) {
+                var title = result.articles[i].title;
+                var url = result.articles[i].url;
+                var time = result.articles[i].time;
+                loadStories(title, url, time);
+            }
+
+        }
+    };
+    xhr.send();
 });
 
 document.querySelector('.search-txt').addEventListener('keypress', function (e) {
@@ -104,7 +96,23 @@ document.querySelector('.search-txt').addEventListener('keypress', function (e) 
         chrome.storage.local.set({ searchResult: str }, function () {
             console.log('Value is set to ' + str);
         });
-        sendNativeMessage(str);
+        var searchUrl = "https://chrome-backend.herokuapp.com/news/" + str
+        xhr.open("GET", searchUrl, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                // JSON.parse does not evaluate the attacker's scripts.
+                wipePage();
+                var result = JSON.parse(xhr.responseText);
+                for (i in result.articles) {
+                    var title = result.articles[i].title;
+                    var url = result.articles[i].url;
+                    var time = result.articles[i].time;
+                    loadStories(title, url, time);
+                }
+
+            }
+        };
+        xhr.send();
     }
 });
 
@@ -140,7 +148,7 @@ function goChecklist() {
     window.location.href = "checklist.html";
 }
 
-function goCategory(){
+function goCategory() {
     console.log('Go category page');
     chrome.browserAction.setPopup({ popup: "category.html" });
     window.location.href = "category.html";
@@ -156,8 +164,8 @@ function haveArticles(json, searchResult) {
     }
 }
 
-function getImageUrl(){
-    return ran_key = images_json[Math.floor(Math.random() *images_json.length)].url;
+function getImageUrl() {
+    return ran_key = images_json[Math.floor(Math.random() * images_json.length)].url;
 }
 
 function loadStories(title, url, date) {
@@ -172,18 +180,18 @@ function loadStories(title, url, date) {
     var image = document.createElement('img');
     image.src = getImageUrl();
 
-     //create the add button
-     var checklistButton = document.createElement('a');
-     checklistButton.className = "add small margin-top "+ String(articleId);
-     checklistButton.href="#";
-     checklistButton.id = String(articleId);
- 
-     //create the icon inside the checklist
-     //<i class="fas fa-plus-square"></i>
-     var checklistIcon = document.createElement('i');
-     checklistIcon.className = 'fas fa-plus-circle';
-     checklistIcon.id= String(articleId);
-     checklistButton.appendChild(checklistIcon); 
+    //create the add button
+    var checklistButton = document.createElement('a');
+    checklistButton.className = "add small margin-top " + String(articleId);
+    checklistButton.href = "#";
+    checklistButton.id = String(articleId);
+
+    //create the icon inside the checklist
+    //<i class="fas fa-plus-square"></i>
+    var checklistIcon = document.createElement('i');
+    checklistIcon.className = 'fas fa-plus-circle';
+    checklistIcon.id = String(articleId);
+    checklistButton.appendChild(checklistIcon);
 
     //create the headline element
     var headline = document.createElement('a');
@@ -205,7 +213,7 @@ function loadStories(title, url, date) {
     tile.appendChild(checklistButton);
     tile.appendChild(headline);
     tile.appendChild(articleDateDiv);
-    articleId = articleId+1
+    articleId = articleId + 1
 
     //check if its even or odd
     if (contentLeft == true) {
@@ -490,4 +498,44 @@ function loadStories(title, url, date) {
 // $('.content .column').on('click', '.tile .add', function(){
 //     alert('Button clicked!');
 // });
+
+// function connect() {
+//     var hostName = "com.google.chrome.example.newscrawler";
+//     port = chrome.runtime.connectNative(hostName);
+//     port.onMessage.addListener(onNativeMessage);
+//     port.onDisconnect.addListener(onDisconnected);
+// }
+
+// function sendNativeMessage(message) {
+//     port.postMessage(message);
+//     // alert("sending message");
+// }
+
+// function onDisconnected() {
+//     // appendMessage("Failed to connect: " + chrome.runtime.lastError.message);
+//     alert("failed to connect")
+//     port = null;
+// }
+
+
+// function onNativeMessage(message) {
+//     // updateInvestopedia(JSON.stringify(message));
+//     console.log(JSON.stringify(message).substr(1, 1));
+//     console.log(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4));
+//     InputMessage = JSON.stringify(message).substr(3, JSON.stringify(message).length - 4);
+//     title = InputMessage.substr(0, InputMessage.indexOf('http'));
+//     // url = InputMessage.substr(InputMessage.indexOf('http'), InputMessage.length-1);
+//     url = InputMessage.substring(InputMessage.indexOf('http'), InputMessage.indexOf('|'));
+//     date = InputMessage.substring(InputMessage.indexOf('|') + 1);
+//     console.log(title);
+//     console.log(url);
+//     console.log(date);
+
+//     if (JSON.stringify(message).substr(1, 1) == "W") {
+//         wipePage();
+//     }
+//     else {
+//         loadStories(title, url, date)
+//     }
+// }
 
