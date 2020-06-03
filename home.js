@@ -1,13 +1,28 @@
 var port = null;
 
-connect();
 
+
+var xhr = new XMLHttpRequest();
+//will use http request instead
 $(".search-btn").click(function () {
     var str = $(".search-txt").val();
     chrome.storage.local.set({ searchResult: str }, function () {
         console.log('Value is set to ' + str);
     });
-    sendNativeMessage(str);
+    var searchUrl = "https://chrome-backend.herokuapp.com/definition/" + str
+    xhr.open("GET", searchUrl, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            // JSON.parse does not evaluate the attacker's scripts.
+            var result = JSON.parse(xhr.responseText);
+            updateInvestopedia(result.investopedia)
+            updateDictionary(result.dictionary)
+        }
+    };
+    xhr.send();
+
+
+    //sendNativeMessage(str);
     // loadInvestopedia(investopedia_json, str);
     // loadDictionary(dictionary_json, str);
     // alert(str);
@@ -19,43 +34,24 @@ document.querySelector('.search-txt').addEventListener('keypress', function (e) 
         chrome.storage.local.set({ searchResult: str }, function () {
             console.log('Value is set to ' + str);
         });
-        sendNativeMessage(str);
+        var searchUrl = "https://chrome-backend.herokuapp.com/definition/" + str
+        xhr.open("GET", searchUrl, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                // JSON.parse does not evaluate the attacker's scripts.
+                var result = JSON.parse(xhr.responseText);
+                updateInvestopedia(result.investopedia)
+                updateDictionary(result.dictionary)
+            }
+        };
+        xhr.send();
         // loadInvestopedia(investopedia_json, str);
         // loadDictionary(dictionary_json, str);
         // alert(str);
     }
 });
 
-function connect() {
-    var hostName = "com.google.chrome.example.webcrawler";
-    // appendMessage("Connecting to native messaging host <b>" + hostName + "</b>")
-    port = chrome.runtime.connectNative(hostName);
-    port.onMessage.addListener(onNativeMessage);
-    port.onDisconnect.addListener(onDisconnected);
-}
 
-function sendNativeMessage(message) {
-    port.postMessage(message);
-    // alert("sending message");
-}
-
-function onDisconnected() {
-    // appendMessage("Failed to connect: " + chrome.runtime.lastError.message);
-    alert("failed to connect")
-    port = null;
-}
-
-function onNativeMessage(message) {
-    // updateInvestopedia(JSON.stringify(message));
-    console.log(JSON.stringify(message).substr(1, 1));
-    console.log(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4));
-
-    if (JSON.stringify(message).substr(1, 1) == "I") {
-        updateInvestopedia(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4))
-    } else {
-        updateDictionary(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4))
-    }
-}
 
 
 
@@ -210,4 +206,35 @@ function goCategory() {
 //   `;
 //     $(".dictionary .defination").replaceWith(html);
 
+// }
+
+// function connect() {
+//     var hostName = "com.google.chrome.example.webcrawler";
+//     // appendMessage("Connecting to native messaging host <b>" + hostName + "</b>")
+//     port = chrome.runtime.connectNative(hostName);
+//     port.onMessage.addListener(onNativeMessage);
+//     port.onDisconnect.addListener(onDisconnected);
+// }
+
+// function sendNativeMessage(message) {
+//     port.postMessage(message);
+//     // alert("sending message");
+// }
+
+// function onDisconnected() {
+//     // appendMessage("Failed to connect: " + chrome.runtime.lastError.message);
+//     alert("failed to connect")
+//     port = null;
+// }
+
+// function onNativeMessage(message) {
+//     // updateInvestopedia(JSON.stringify(message));
+//     console.log(JSON.stringify(message).substr(1, 1));
+//     console.log(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4));
+
+//     if (JSON.stringify(message).substr(1, 1) == "I") {
+//         updateInvestopedia(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4))
+//     } else {
+//         updateDictionary(JSON.stringify(message).substr(3, JSON.stringify(message).length - 4))
+//     }
 // }
