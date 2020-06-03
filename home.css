@@ -113,6 +113,8 @@ img {
 }
 
 .search-box .search-txt{
+    border:none;
+    outline: none;
     padding: 10px;
     font-size: 13px;
     font-weight: lighter;
@@ -147,6 +149,8 @@ img {
 }
 
 .tab-container .button-container button{
+    border:none;
+    outline: none;
     width: 50%;
     height: 95%;
     color: white;
