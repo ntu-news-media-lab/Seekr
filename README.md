@@ -38,30 +38,7 @@ Seekr aims to:
 4. Click on 'Load unpacked'.
 5. Select the code repository folder, in this case it will be the folder Seekr.
 6. You should see a magnifying glass extension' as a chrome extension.
-
-## 3.2 Installing Python and the required libraries for Windows user
-The extension runs on a backend python script.  Below is the instruction for installing python and the required libraries to run the script.
-1. Visit https://www.python.org/ and download the latest python version.
-2. During installation, select the Add Python To Path checkbox.  Continue with the rest of the installation.
-3. Open up command prompt by typing cmd into windows search bar.  Type “python--version” into the command prompt to make sure you have installed python correctly.
-4. Install the following packages by typing it into the command prompt.  Type and enter it one by one.
-    * pip install beautifulsoup4
-    * pip install requests
-    * pip install jsonlib
-    * pip install structures
-    * pip install lxml
-
-## 3.3 Some last tweaking to make the extension work
-1.  Open the chrome menu by clicking on the 3 dots at the top right hand corner. Go to More tools > Extensions. (Or go to this link: chrome://extensions/ )
-2. Look for the seekr extension.  In the seekr extension box there is a field call  ID.  Copy the ID.
-3. Navigate to the Seekr folder then open up  the host folder.
-4. Inside this folder there is a file call newsCrawler.  Open newsCrawler file using notepad by right clicking it and selecting open with NotePad.
-5. In the file, there is a field called “chrome-extension”.  Replace the ID inside with the ID you just copied.
-6. Save and exit the file.  Look for another file call webCrawler in the host folder and repeat the steps above.
-7. Finally in the  host folder, double click on the install_host to install the batch file.
-
-## 3.4 Advice for Mac user
-There is no installation script for mac user as of now.  However, for future developers working on this extension, you can refer to the sh script “install_host_MacReference”.  I  added in the host folder for reference on creating a script to run on Mac devices.
+7. Enjoy using the extension
 
 # 4. Usage
 
